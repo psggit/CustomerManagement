@@ -2,9 +2,6 @@
  * utility methods for constructing `Fetch` API
  */
 
-// import "whatwg-fetch"
-// import Session from "./../session"
-import { Api } from "./../config"
 /**
  * Helper methods to create window.fetch instance
  */
@@ -23,14 +20,14 @@ function getHeaders(type) {
   }
 
   switch (type) {
-  case "FormData":
-    return getToken()
-  case "Public":
-    return Object.assign({}, json_headers)
-  case "RSS":
-    return Object.assign({}, {"Accept": "application/xml", "Content-Type": "application/xml"})
-  default:
-    return Object.assign({}, json_headers)
+    case "FormData":
+      return getToken()
+    case "Public":
+      return Object.assign({}, json_headers)
+    case "RSS":
+      return Object.assign({}, { "Accept": "application/xml", "Content-Type": "application/xml" })
+    default:
+      return Object.assign({}, json_headers)
   }
 }
 
@@ -40,11 +37,11 @@ function getHeaders(type) {
  */
 function constructBody({ type, data }) {
   switch (type) {
-  case "FormData":
-    return data
+    case "FormData":
+      return data
 
-  default:
-    return JSON.stringify(data)
+    default:
+      return JSON.stringify(data)
   }
 }
 
@@ -75,8 +72,8 @@ export function constructFetchUtility(options) {
 
   const { api, data, method, type, prependBaseUrl = true, apiBase } = options
   // construct request url
-  const url = prependBaseUrl ? `${Api[apiBase]}${api}` : api
-  
+  const url = prependBaseUrl ? `https://${apiBase}.${process.env.BASE_URL}${api}` : api
+
   // construct options for creating `window.fetch` instance
   let fetchOptions = {
     method,
@@ -86,7 +83,7 @@ export function constructFetchUtility(options) {
 
   // add data to request
   if (data && method !== "GET") {
-    fetchOptions.body = constructBody({type, data})
+    fetchOptions.body = constructBody({ type, data })
   }
 
   return fetch(url, fetchOptions)
