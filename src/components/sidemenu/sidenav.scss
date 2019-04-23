@@ -1,0 +1,27 @@
+@import "./../../sass/base.scss";
+
+.sidenav {
+  width: 240px;
+  height: 100%;
+  border-right: 1px solid #dfdfdf;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #111;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #222;
+    outline: 1px solid slategrey;
+  }
+}
+
+.sidenav--item {
+  display: block;
+  padding: 15px 20px;
+  border-bottom: 1px solid #dfdfdf;
+}
