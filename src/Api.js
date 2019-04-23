@@ -1,5 +1,9 @@
-export function fetchAlbums() {
-  const url = "https://jsonplaceholder.typicode.com/photos?_page=1&&_limit=10"
-  return fetch(url)
-  .then(res => res.json())
+import { POST } from "Utils/fetch";
+
+export function fetchConsumers(req) {
+  return POST({
+    api: "/Api/consumer/list",
+    apiBase: "customer",
+    data: req
+  }).then(json => json);
 }
