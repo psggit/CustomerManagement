@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import { fetchConsumers } from "../Api"
 import Table from "Components/Table"
 import PageHeading from "Components/PageHeading"
+import Pagination from "react-js-pagination"
+import { getOffsetUsingPageNo } from "../utils/helpers";
 
 const tableColumns = [
   {
@@ -40,16 +42,21 @@ const tableColumns = [
   }
 ]
 
+
 export default function ListConsumers() {
+  const limit = 10
   const [consumers, setConsumers] = useState([])
   const [consumersCount, setConsumersCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
+  const [activePage, setActivePage] = useState(1)
+  const [activeOffset, setActiveOffset] = useState(0)
 
   const fetchConsumersReq = {
-    limit: 10,
-    offset: 0
+    limit: limit,
+    offset: activeOffset
   }
   useEffect(() => {
+    console.log(activeOffset, activePage)
     fetchConsumers(fetchConsumersReq)
       .then(fetchConsumersRes => {
         setConsumersCount(fetchConsumersRes.count)
@@ -60,17 +67,29 @@ export default function ListConsumers() {
         console.log(err)
         setLoadingState(true)
       })
-  }, 0)
+  }, [activeOffset])
 
   return (
     <div>
       <PageHeading>All Consumers</PageHeading>
       {
         isLoaded === true &&
-        <Table
-          data={consumers}
-          columns={tableColumns}
-        />
+        <div>
+          <Table
+            data={consumers}
+            columns={tableColumns}
+          />
+          <Pagination
+            activePage={activePage}
+            itemsCountPerPage={limit}
+            totalItemsCount={consumersCount}
+            pageRangeDisplayed={5}
+            onChange={(active) => {
+              setActiveOffset(getOffsetUsingPageNo(active))
+              setActivePage(active)
+            }}
+          />
+        </div>
       }
     </div>
   )
