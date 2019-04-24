@@ -1,0 +1,81 @@
+import React, { useState, useEffect } from "react"
+import PageHeading from "Components/PageHeading"
+import Table from "Components/Table"
+import Pagination from "react-js-pagination"
+import { getOffsetUsingPageNo } from "Utils/helpers"
+import { fetchConsumerNotes } from "../Api";
+
+const tableColumns = [
+  {
+    name: "Consumer ID",
+    mapping: "consumer_id"
+  },
+  {
+    name: "Issue ID",
+    mapping: "issue_id"
+  },
+  {
+    name: "Issue Code",
+    mapping: "issue_code"
+  },
+  {
+    name: "Description",
+    mapping: "description"
+  },
+  {
+    name: "Created At",
+    mapping: "created_at",
+    fn: created_at => created_at.slice(0, 10)
+  }
+]
+
+export default function ConsumerNotes() {
+  const limit = 10
+  const consumer_id = parseInt(location.pathname.split("/").pop())
+  const [consumersNotes, setConsumerNotes] = useState([])
+  const [consumersNotesCount, setConsumerNotesCount] = useState(0)
+  const [isLoaded, setLoadingState] = useState(false)
+  const [activePage, setActivePage] = useState(1)
+  const [activeOffset, setActiveOffset] = useState(0)
+
+  const fetchConsumerNotesReq = {
+    consumer_id,
+    limit,
+    offset: activeOffset
+  }
+  useEffect(() => {
+    fetchConsumerNotes(fetchConsumerNotesReq)
+      .then(fetchConsumerNotesRes => {
+        setConsumerNotes(fetchConsumerNotesRes.notes)
+        setConsumerNotesCount(fetchConsumerNotesRes.count)
+        setLoadingState(true)
+      })
+  }, [activeOffset])
+  return (
+    <div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <PageHeading>Consumer Notes ({consumer_id})</PageHeading>
+        <button>Create New</button>
+      </div>
+      {
+        isLoaded === true &&
+        <div>
+          <Table
+            data={consumersNotes}
+            columns={tableColumns}
+          />
+          <Pagination
+            activePage={activePage}
+            itemsCountPerPage={limit}
+            totalItemsCount={consumersNotesCount}
+            pageRangeDisplayed={5}
+            onChange={(active) => {
+              setActiveOffset(getOffsetUsingPageNo(active))
+              setActivePage(active)
+            }}
+          />
+        </div>
+      }
+    </div>
+  )
+}
