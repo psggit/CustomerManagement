@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import PageHeading from "Components/PageHeading"
-import { fetchConsumerSOA } from "../Api"
 import Table from "Components/Table"
 import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo } from "Utils/helpers"
+import { fetchConsumerSOA } from "../Api"
 
 const tableColumns = [
   {
@@ -44,7 +44,6 @@ export default function ConsumerSOA() {
 
 
   useEffect(() => {
-    console.log(activeOffset)
     const fetchConsumerSOAReq = {
       consumer_id,
       limit,
@@ -63,7 +62,7 @@ export default function ConsumerSOA() {
   }, [activeOffset])
   return (
     <div>
-      <PageHeading>Consumer SOA</PageHeading>
+      <PageHeading>Consumer SOA ({consumer_id})</PageHeading>
       {
         isLoaded === true &&
         <div>
