@@ -9,6 +9,14 @@ a {
   text-decoration: none;
 }
 
+button {
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 input:focus {
   outline: 0;
 }
