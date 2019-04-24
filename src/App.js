@@ -7,6 +7,7 @@ import { Router } from "react-router"
 import Welcome from "./Welcome"
 import Layout from "./Layout"
 import ListConsumers from "./ListConsumers"
+import "Components/Pagination/pagination.scss"
 
 const history = createBrowserHistory()
 
