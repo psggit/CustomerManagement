@@ -7,6 +7,8 @@ import { Router } from "react-router"
 import Welcome from "./Welcome"
 import Layout from "./Layout"
 import ListConsumers from "./ListConsumers"
+import ConsumerDetail from "./ConsumerDetail"
+import ConsumerSOA from "./ConsumerSOA"
 import "Components/Pagination/pagination.scss"
 
 const history = createBrowserHistory()
@@ -25,6 +27,16 @@ function App() {
             exact
             path="/consumers"
             component={ListConsumers}
+          />
+          <Route
+            exact
+            path="/consumers/:consumer_id"
+            component={ConsumerDetail}
+          />
+          <Route
+            exact
+            path="/consumers/soa/:consumer_id"
+            component={ConsumerSOA}
           />
         </Switch>
       </Layout>
