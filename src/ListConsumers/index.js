@@ -40,7 +40,12 @@ const tableColumns = [
   {
     name: null,
     mapping: null,
-    fn: item => <a href={`/consumers/soa/${item.consumer_id}`}>View SOA</a>
+    fn: item => <a href={`/consumers/soa/${item.consumer_id}`}>SOA</a>
+  },
+  {
+    name: null,
+    mapping: null,
+    fn: item => <a href={`/consumers/notes/${item.consumer_id}`}>Notes</a>
   }
 ]
 
