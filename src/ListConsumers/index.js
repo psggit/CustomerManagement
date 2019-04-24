@@ -8,12 +8,13 @@ import { getOffsetUsingPageNo } from "../utils/helpers";
 
 const tableColumns = [
   {
-    name: "Name",
-    mapping: "name"
+    name: "ID",
+    mapping: "consumer_id",
+    fn: id => <a href={`/consumers/${id}`}>{id}</a>
   },
   {
-    name: "ID",
-    mapping: "consumer_id"
+    name: "Name",
+    mapping: "name",
   },
   {
     name: "Email",
@@ -30,7 +31,7 @@ const tableColumns = [
   {
     name: "DOB",
     mapping: "dob",
-    format: dob => dob.slice(0, 10)
+    fn: dob => dob.slice(0, 10)
   },
   {
     name: "Credits",
@@ -38,7 +39,8 @@ const tableColumns = [
   },
   {
     name: null,
-    anything: <button>View</button>
+    mapping: null,
+    fn: item => <a href={`/consumers/soa/${item.consumer_id}`}>View SOA</a>
   }
 ]
 
@@ -56,7 +58,6 @@ export default function ListConsumers() {
     offset: activeOffset
   }
   useEffect(() => {
-    console.log(activeOffset, activePage)
     fetchConsumers(fetchConsumersReq)
       .then(fetchConsumersRes => {
         setConsumersCount(fetchConsumersRes.count)
@@ -71,7 +72,7 @@ export default function ListConsumers() {
 
   return (
     <div>
-      <PageHeading>All Consumers</PageHeading>
+      <PageHeading>All Consumers ({consumersCount})</PageHeading>
       {
         isLoaded === true &&
         <div>
