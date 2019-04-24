@@ -17,9 +17,9 @@ export default function Table({ data, columns }) {
               columns.map((col, ci) => (
                 <td key={`c-${ci}`}>
                   {
-                    col.name !== null
-                      ? (col.format ? col.format(row[col.mapping]) : row[col.mapping])
-                      : col.anything
+                    col.mapping !== null
+                      ? (col.fn ? col.fn(row[col.mapping]) : row[col.mapping])
+                      : col.fn(row)
                   }
                 </td>
               ))
