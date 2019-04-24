@@ -33,3 +33,21 @@ export function fetchConsumerSOA(req) {
     data: req
   })
 }
+
+export function fetchConsumerNotes(req) {
+  return POST({
+    api: `/Api/consumer/notes/list/${req.consumer_id}`,
+    apiBase: "customer",
+    data: req
+  })
+    .then(json => json)
+}
+
+export function createConsumerNote(req) {
+  return POST({
+    api: "/Api/consumer/notes/create",
+    apiBase: "customer",
+    data: req
+  })
+    .then(json => json)
+}
