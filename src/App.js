@@ -10,6 +10,7 @@ import ListConsumers from "./ListConsumers"
 import ConsumerDetail from "./ConsumerDetail"
 import ConsumerSOA from "./ConsumerSOA"
 import "Components/Pagination/pagination.scss"
+import ConsumerNotes from "./ConsumerNotes";
 
 const history = createBrowserHistory()
 
@@ -37,6 +38,11 @@ function App() {
             exact
             path="/consumers/soa/:consumer_id"
             component={ConsumerSOA}
+          />
+          <Route
+            exact
+            path="/consumers/notes/:consumer_id"
+            component={ConsumerNotes}
           />
         </Switch>
       </Layout>
