@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import TitleAndSave from "Components/ModalBox/TitleAndSave"
 import "./CreateNoteModal.scss"
 import { fetchNoteIssues, createConsumerNote } from "../Api";
+import { unmountModal } from "Components/ModalBox/api"
 
 export default function CreateNoteModal({ consumer_id }) {
   return class CreateNoteModal extends React.Component {
@@ -22,13 +23,18 @@ export default function CreateNoteModal({ consumer_id }) {
       const { consumer_id, issueId, noteDescription } = this.state
       const createConsumerNoteReq = {
         consumer_id,
-        issue_id: issueId,
+        issue_id: parseInt(issueId),
         description: noteDescription
       }
       if (noteDescription.length) {
         createConsumerNote(createConsumerNoteReq)
           .then(json => {
+            unmountModal()
             alert(json.message)
+          })
+          .catch(err => {
+            console.log(err)
+            unmountModal()
           })
       }
     }
