@@ -51,3 +51,11 @@ export function createConsumerNote(req) {
   })
     .then(json => json)
 }
+
+export function fetchNoteIssues() {
+  return GET({
+    api: "/Api/consumer/notes/list/issues",
+    apiBase: "customer"
+  })
+    .then(json => json)
+}
