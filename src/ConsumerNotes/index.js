@@ -3,7 +3,9 @@ import PageHeading from "Components/PageHeading"
 import Table from "Components/Table"
 import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo } from "Utils/helpers"
-import { fetchConsumerNotes } from "../Api";
+import { fetchConsumerNotes } from "../Api"
+import { mountModal } from "Components/ModalBox/api"
+import CreateNoteModal from "./CreateNoteModal"
 
 const tableColumns = [
   {
@@ -30,8 +32,8 @@ const tableColumns = [
 ]
 
 export default function ConsumerNotes() {
-  const limit = 10
   const consumer_id = parseInt(location.pathname.split("/").pop())
+  const limit = 10
   const [consumersNotes, setConsumerNotes] = useState([])
   const [consumersNotesCount, setConsumerNotesCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
@@ -51,11 +53,20 @@ export default function ConsumerNotes() {
         setLoadingState(true)
       })
   }, [activeOffset])
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <PageHeading>Consumer Notes ({consumer_id})</PageHeading>
-        <button>Create New</button>
+        <button
+          onClick={() => {
+            mountModal(CreateNoteModal({
+              consumer_id
+            }))
+          }}
+        >
+          Create New
+        </button>
       </div>
       {
         isLoaded === true &&
