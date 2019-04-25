@@ -9,14 +9,6 @@ import CreateNoteModal from "./CreateNoteModal"
 
 const tableColumns = [
   {
-    name: "Consumer ID",
-    mapping: "consumer_id"
-  },
-  {
-    name: "Issue ID",
-    mapping: "issue_id"
-  },
-  {
     name: "Issue Code",
     mapping: "issue_code"
   },
@@ -28,6 +20,10 @@ const tableColumns = [
     name: "Created At",
     mapping: "created_at",
     fn: created_at => created_at.slice(0, 10)
+  },
+  {
+    name: "Created By",
+    mapping: "created_by"
   }
 ]
 
