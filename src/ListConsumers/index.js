@@ -1,7 +1,10 @@
 import React from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { fetchConsumers } from "../Api"
 import Table from "Components/Table"
+import Input from "Components/Input"
+import { Form, FormGroup } from "Components/Form"
+import Icon from "Components/Icon"
 import PageHeading from "Components/PageHeading"
 import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo } from "../utils/helpers";
@@ -57,12 +60,29 @@ export default function ListConsumers() {
   const [isLoaded, setLoadingState] = useState(false)
   const [activePage, setActivePage] = useState(1)
   const [activeOffset, setActiveOffset] = useState(0)
+  const [filterValue, setFilterValue] = useState("")
+  const [finalFilterValue, setFinalFilterValue] = useState("")
+
+  const handleFilterSubmit = e => {
+    e.preventDefault()
+    setFinalFilterValue(filterValue)
+  }
 
   const fetchConsumersReq = {
     limit: limit,
     offset: activeOffset
   }
+
+  if (finalFilterValue.length > 0) {
+    const isPhoneNo = isNaN(filterValue) === false
+    fetchConsumersReq.filter = {
+      filterBy: isPhoneNo ? "Mobile" : "Email",
+      value: filterValue
+    }
+  }
+
   useEffect(() => {
+    setLoadingState(false)
     fetchConsumers(fetchConsumersReq)
       .then(fetchConsumersRes => {
         setConsumersCount(fetchConsumersRes.count)
@@ -73,11 +93,21 @@ export default function ListConsumers() {
         console.log(err)
         setLoadingState(true)
       })
-  }, [activeOffset])
+  }, [activeOffset, finalFilterValue])
 
   return (
     <div>
-      <PageHeading>All Consumers ({consumersCount})</PageHeading>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <PageHeading>Consumers List ({consumersCount})</PageHeading>
+        <div style={{ paddingBottom: "20px", marginLeft: "20px" }}>
+          <Form onSubmit={handleFilterSubmit}>
+            <div style={{ position: "relative" }}>
+              <Input type="text" value={filterValue} onChange={(e) => { setFilterValue(e.target.value) }} placeholder="Search by email or phone.." />
+              {filterValue.length ? <Icon onClick={() => { setFinalFilterValue(""); setFilterValue("") }} name="search--cross" /> : ""}
+            </div>
+          </Form>
+        </div>
+      </div>
       {
         isLoaded === true &&
         <div>
@@ -96,6 +126,10 @@ export default function ListConsumers() {
             }}
           />
         </div>
+      }
+      {
+        isLoaded === false &&
+        <h3>Loading...</h3>
       }
     </div>
   )
