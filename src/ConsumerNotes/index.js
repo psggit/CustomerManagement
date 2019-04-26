@@ -29,7 +29,7 @@ const tableColumns = [
 
 export default function ConsumerNotes() {
   const consumer_id = parseInt(location.pathname.split("/").pop())
-  const limit = 10
+  const limit = 50
   const [consumersNotes, setConsumerNotes] = useState([])
   const [consumersNotesCount, setConsumerNotesCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)

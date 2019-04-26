@@ -1,10 +1,15 @@
 @import "./../../sass/base.scss";
 
 .sidenav {
+  position: fixed;
+  top: 78px;
+  left: 0;
   width: 240px;
   height: 100%;
+  z-index: 1;;
   border-right: 1px solid #dfdfdf;
   overflow-y: auto;
+  background: #24292e;
 
   &::-webkit-scrollbar {
     width: 0px;
@@ -23,5 +28,10 @@
 .sidenav--item {
   display: block;
   padding: 15px 20px;
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid darken(#24292e, 5);
+  color: #fff;
+  &:hover {
+    background: #fff;
+    color: #24292e;
+  }
 }

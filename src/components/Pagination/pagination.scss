@@ -23,16 +23,16 @@
     &:last-child {
       // border-top-right-radius: 2px;
       // border-bottom-right-radius: 2px;
-      border-right: 1px solid;
+      border-right: 1px solid #24292e;
     }
     &.active, &:hover {
-      background: #000;
+      background: #24292e;
       a {
         color: #fff;
       }
     }
     a {
-      color: #000;
+      color: #24292e;
       text-decoration: none;
     }
   }

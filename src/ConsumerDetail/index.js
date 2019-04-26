@@ -57,7 +57,6 @@ export default function ConsumerDetail() {
           <FormGroup inline>
             <label>Gender</label>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <label>Male</label>
               <Input
                 onChange={() => { setGender("male") }}
                 checked={gender === "male"}
@@ -65,9 +64,9 @@ export default function ConsumerDetail() {
                 name="gender"
                 type="radio"
               />
+              <label>Male</label>
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <label>Female</label>
               <Input
                 onChange={() => { setGender("female") }}
                 checked={gender === "female"}
@@ -75,6 +74,7 @@ export default function ConsumerDetail() {
                 name="gender"
                 type="radio"
               />
+              <label>Female</label>
             </div>
           </FormGroup>
 

@@ -10,7 +10,7 @@ const tableColumns = [
   {
     name: "ID",
     mapping: "consumer_id",
-    fn: id => <a href={`/consumers/${id}`}>{id}</a>
+    fn: id => <a href={`/admin/consumers/${id}`}>{id}</a>
   },
   {
     name: "Name",
@@ -40,18 +40,18 @@ const tableColumns = [
   {
     name: null,
     mapping: null,
-    fn: item => <a href={`/consumers/soa/${item.consumer_id}`}>SOA</a>
+    fn: item => <a href={`/admin/consumers/soa/${item.consumer_id}`}>SOA</a>
   },
   {
     name: null,
     mapping: null,
-    fn: item => <a href={`/consumers/notes/${item.consumer_id}`}>Notes</a>
+    fn: item => <a href={`/admin/consumers/notes/${item.consumer_id}`}>Notes</a>
   }
 ]
 
 
 export default function ListConsumers() {
-  const limit = 10
+  const limit = 20
   const [consumers, setConsumers] = useState([])
   const [consumersCount, setConsumersCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)

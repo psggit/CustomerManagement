@@ -11,7 +11,7 @@ export function FormGroup({ children, inline }) {
 
 export function Form({ width, children }) {
   return (
-    <form className="form" style={{ width }}>
+    <form className="form">
       {children}
     </form>
   )

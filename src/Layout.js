@@ -2,15 +2,15 @@ import React from "react"
 import SideNav from "Components/sidemenu"
 import Header from "Components/header"
 
-function Layout({ children }) {
+function Layout({ history, children }) {
   return (
     <React.Fragment>
-      <Header />
+      <Header history={history} />
       <div style={{
-        height: "calc(100vh - 82px)",
+        height: "calc(100vh - 78px)",
         position: "fixed",
         left: 0,
-        top: "82px",
+        top: "78px",
       }}>
         <SideNav />
       </div>

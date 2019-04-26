@@ -7,8 +7,21 @@ import { fetchConsumerSOA } from "../Api"
 
 const tableColumns = [
   {
+    name: "Created At",
+    mapping: "created_at",
+    fn: created_at => created_at.slice(0, 10)
+  },
+  {
+    name: "Type",
+    mapping: "type"
+  },
+  {
     name: "Order ID",
     mapping: "order_id"
+  },
+  {
+    name: "Amount",
+    mapping: "amount"
   },
   {
     name: "Opening Balance",
@@ -17,24 +30,11 @@ const tableColumns = [
   {
     name: "Closing Balance",
     mapping: "closing_balance"
-  },
-  {
-    name: "Type",
-    mapping: "type"
-  },
-  {
-    name: "Amount",
-    mapping: "amount"
-  },
-  {
-    name: "Created At",
-    mapping: "created_at",
-    fn: created_at => created_at.slice(0, 10)
   }
 ]
 
 export default function ConsumerSOA() {
-  const limit = 10
+  const limit = 20
   const consumer_id = parseInt(location.pathname.split("/").pop())
   const [consumersSOAs, setConsumerSOAs] = useState([])
   const [consumersSOAsCount, setConsumerSOAsCount] = useState(0)

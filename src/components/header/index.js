@@ -1,13 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 import "./header.scss"
+import { authLogout } from "../../Api";
+import { clearSession, getSession } from "Utils/session"
 
-function Header() {
+export default function Header({ history }) {
+  const session = getSession()
+  const hasuraID = session ? session.hasura_id : null
+  const handleClick = e => {
+    e.preventDefault()
+    authLogout()
+      .then(json => {
+        clearSession()
+        history.push("/admin/login")
+      })
+      .catch(err => { console.log(err) })
+  }
   return (
     <div className="header">
-      <a href="/">Customer Management</a>
-      <p>Logout</p>
+      <a href="/admin"><h2>Customer Management</h2></a>
+      <p onClick={handleClick} >Logout (Hasura ID: {hasuraID})</p>
     </div>
   )
 }
-
-export default Header
