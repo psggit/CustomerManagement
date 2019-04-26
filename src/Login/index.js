@@ -37,17 +37,6 @@ export default function Login(props) {
     }
   }
 
-  /** Check if already logged in */
-  useEffect(() => {
-    authTokenInfo()
-      .then(json => {
-        props.history.push("/admin")
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [])
-
   return (
     <div id="login--page">
       <div>
@@ -64,7 +53,7 @@ export default function Login(props) {
               <Input type="password" onChange={(e) => { setPassword(e.target.value) }} />
             </FormGroup>
 
-            <Button disabled={isLoading} onClick={handleClick}>Sign in</Button>
+            <Button width="100%" disabled={isLoading} onClick={handleClick}>Sign in</Button>
           </Form>
         </div>
       </div>
