@@ -1,5 +1,27 @@
 import { POST, GET } from "Utils/fetch";
 
+export function authLogin(req) {
+  return POST({
+    api: "/login",
+    apiBase: "auth",
+    data: req
+  })
+}
+
+export function authLogout(req) {
+  return GET({
+    api: "/user/logout",
+    apiBase: "auth"
+  })
+}
+
+export function authTokenInfo(req) {
+  return GET({
+    api: "/user/account/info",
+    apiBase: "auth"
+  })
+}
+
 export function fetchConsumers(req) {
   return POST({
     api: "/Api/consumer/list",
