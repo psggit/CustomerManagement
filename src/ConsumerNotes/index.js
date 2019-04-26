@@ -6,6 +6,7 @@ import { getOffsetUsingPageNo } from "Utils/helpers"
 import { fetchConsumerNotes } from "../Api"
 import { mountModal } from "Components/ModalBox/api"
 import CreateNoteModal from "./CreateNoteModal"
+import Button from "Components/Button"
 
 const tableColumns = [
   {
@@ -54,7 +55,7 @@ export default function ConsumerNotes() {
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <PageHeading>Consumer Notes ({consumer_id})</PageHeading>
-        <button
+        <Button
           onClick={() => {
             mountModal(CreateNoteModal({
               consumer_id
@@ -62,7 +63,7 @@ export default function ConsumerNotes() {
           }}
         >
           Create New
-        </button>
+        </Button>
       </div>
       {
         isLoaded === true &&
@@ -82,6 +83,10 @@ export default function ConsumerNotes() {
             }}
           />
         </div>
+      }
+      {
+        isLoaded === false &&
+        <h3>Loading...</h3>
       }
     </div>
   )
