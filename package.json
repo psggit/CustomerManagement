@@ -20,6 +20,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^2.0.1",
+    "compression-webpack-plugin": "^2.0.0",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.12.4",
@@ -42,6 +43,6 @@
     "build-client": "webpack --config ./webpack-config/client/webpack.prod.js",
     "build-ssr": "webpack --config ./webpack-config/ssr/webpack.ssr.js",
     "build": "yarn run build-client",
-    "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js --host 0.0.0.0  --history-api-fallback"
+    "start:dev": "webpack-dev-server --config ./webpack-config/client/webpack.dev.js --host 0.0.0.0"
   }
 }
