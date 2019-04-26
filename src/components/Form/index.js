@@ -9,9 +9,9 @@ export function FormGroup({ children, inline }) {
   )
 }
 
-export function Form({ width, children }) {
+export function Form({ onSubmit, width, children }) {
   return (
-    <form className="form">
+    <form onSubmit={onSubmit || undefined} className="form">
       {children}
     </form>
   )
