@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import ReactDOM from "react-dom"
 import { Switch } from "react-router-dom"
 import { Route } from "react-router-dom"
@@ -19,12 +19,15 @@ function App() {
   useEffect(() => {
     authTokenInfo()
       .then(json => {
-        history.push("/admin")
+        if (history.location.pathname.includes("login"))
+          location.href = "/admin"
       })
       .catch(err => {
-        console.log(err)
+        if (!history.location.pathname.includes("login"))
+          location.href = "/admin/login"
       })
   }, [])
+
   return (
     <Router history={history}>
       <Switch>
