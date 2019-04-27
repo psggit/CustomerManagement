@@ -3,6 +3,7 @@ import { fetchConsumerDetail, updateConsumer } from "../Api";
 import PageHeading from "Components/PageHeading"
 import Input from "Components/Input"
 import { Form, FormGroup } from "Components/Form"
+import Button from "Components/Button"
 
 export default function ConsumerDetail() {
   const consumer_id = parseInt(location.pathname.split("/").pop())
@@ -118,7 +119,7 @@ export default function ConsumerDetail() {
             <Input disabled defaultValue={consumerDetail.pin_attempts} />
           </FormGroup>
 
-          <button onClick={handleSubmit}>Save</button>
+          <Button onClick={handleSubmit}>Save</Button>
         </Form>
       }
     </div>
