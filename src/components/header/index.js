@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import "./header.scss"
 import { authLogout } from "../../Api";
 import { clearSession, getSession } from "Utils/session"
+import { NavLink } from "react-router-dom"
 
 export default function Header({ history }) {
   const session = getSession()
@@ -17,7 +18,7 @@ export default function Header({ history }) {
   }
   return (
     <div className="header">
-      <a href="/admin"><h2>Customer Management</h2></a>
+      <NavLink to="/admin"><h2>Customer Management</h2></NavLink>
       <p onClick={handleClick} >Logout (Hasura ID: {hasuraID})</p>
     </div>
   )

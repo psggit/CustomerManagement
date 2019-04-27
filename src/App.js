@@ -34,7 +34,7 @@ function App() {
         <Route
           exact
           path="/admin/login"
-          render={props => <Login {...props} />}
+          component={Login}
         />
         <Layout history={history}>
           <Route

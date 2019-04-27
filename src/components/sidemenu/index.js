@@ -1,5 +1,6 @@
 import React from "react"
 import "./sidenav.scss"
+import { NavLink } from "react-router-dom"
 
 const items = [
   { label: "List Consumer", href: "/admin/consumers" },
@@ -17,7 +18,7 @@ function SideMenu() {
     <div className="sidenav">
       {
         items.map((item, i) => (
-          <a className={`sidenav--item ${active === item.href ? "active" : ""}`} key={i} href={item.href}>{item.label}</a>
+          <NavLink className={`sidenav--item ${active === item.href ? "active" : ""}`} key={i} to={item.href}>{item.label}</NavLink>
         ))
       }
     </div>

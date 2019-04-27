@@ -45,12 +45,12 @@ export default function Login(props) {
           <Form>
             <FormGroup>
               <label>Username</label>
-              <Input onChange={(e) => { setUserName(e.target.value) }} />
+              <Input width="100%" onChange={(e) => { setUserName(e.target.value) }} />
             </FormGroup>
 
             <FormGroup>
               <label>Password</label>
-              <Input type="password" onChange={(e) => { setPassword(e.target.value) }} />
+              <Input width="100%" type="password" onChange={(e) => { setPassword(e.target.value) }} />
             </FormGroup>
 
             <Button width="100%" disabled={isLoading} onClick={handleClick}>Sign in</Button>

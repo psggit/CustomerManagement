@@ -8,12 +8,13 @@ import Icon from "Components/Icon"
 import PageHeading from "Components/PageHeading"
 import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo } from "../utils/helpers";
+import { NavLink } from 'react-router-dom'
 
 const tableColumns = [
   {
     name: "ID",
     mapping: "consumer_id",
-    fn: id => <a href={`/admin/consumers/${id}`}>{id}</a>
+    fn: id => <NavLink to={`/admin/consumers/${id}`}>{id}</NavLink>
   },
   {
     name: "Name",
@@ -43,12 +44,12 @@ const tableColumns = [
   {
     name: null,
     mapping: null,
-    fn: item => <a href={`/admin/consumers/soa/${item.consumer_id}`}>SOA</a>
+    fn: item => <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>
   },
   {
     name: null,
     mapping: null,
-    fn: item => <a href={`/admin/consumers/notes/${item.consumer_id}`}>Notes</a>
+    fn: item => <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>
   }
 ]
 
