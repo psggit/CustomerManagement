@@ -11,7 +11,7 @@ export function FormGroup({ children, inline }) {
 
 export function Form({ onSubmit, width, children }) {
   return (
-    <form onSubmit={onSubmit || undefined} className="form">
+    <form style={{ width }} onSubmit={onSubmit || undefined} className="form">
       {children}
     </form>
   )

@@ -1,14 +1,16 @@
 .form {
   width: 100%;
-  input {
-    width: 100%;
-  }
 }
+
 label {
   margin-bottom: 10px;
 }
 
-input[type=radio] ~ label {
+.form--inline label {
+  margin: 0
+}
+
+input[type=radio] {
   margin: 0 10px;
 }
 
