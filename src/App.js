@@ -40,27 +40,32 @@ function App() {
           <Route
             exact
             path="/admin"
-            component={ListConsumers}
+            render={props => <ListConsumers {...props} />}
           />
           <Route
             exact
             path="/admin/consumers"
-            component={ListConsumers}
+            render={props => <ListConsumers {...props} />}
           />
           <Route
             exact
-            path="/admin/consumers/:consumer_id"
-            component={ConsumerDetail}
+            path="/admin/consumers/:pageno"
+            render={props => <ListConsumers {...props} />}
+          />
+          <Route
+            exact
+            path="/admin/consumers/detail/:consumer_id"
+            render={props => <ConsumerDetail {...props} />}
           />
           <Route
             exact
             path="/admin/consumers/soa/:consumer_id"
-            component={ConsumerSOA}
+            render={props => <ConsumerSOA {...props} />}
           />
           <Route
             exact
             path="/admin/consumers/notes/:consumer_id"
-            component={ConsumerNotes}
+            render={props => <ConsumerNotes {...props} />}
           />
         </Layout>
       </Switch>

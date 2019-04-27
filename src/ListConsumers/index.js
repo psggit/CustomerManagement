@@ -14,7 +14,7 @@ const tableColumns = [
   {
     name: "ID",
     mapping: "consumer_id",
-    fn: id => <NavLink to={`/admin/consumers/${id}`}>{id}</NavLink>
+    fn: id => <NavLink to={`/admin/consumers/detail/${id}`}>{id}</NavLink>
   },
   {
     name: "Name",
@@ -54,19 +54,30 @@ const tableColumns = [
 ]
 
 
-export default function ListConsumers() {
+export default function ListConsumers(props) {
+  const pageNo = props.match.params.pageno ? parseInt(props.match.params.pageno.split("p")[1]) : 1
   const limit = 20
   const [consumers, setConsumers] = useState([])
   const [consumersCount, setConsumersCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
-  const [activePage, setActivePage] = useState(1)
-  const [activeOffset, setActiveOffset] = useState(0)
+  const [activePage, setActivePage] = useState(pageNo)
+  const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo))
   const [filterValue, setFilterValue] = useState("")
   const [finalFilterValue, setFinalFilterValue] = useState("")
+
+  if (filterValue.length === 0 && finalFilterValue.length) {
+    setFinalFilterValue("")
+    setActiveOffset(0)
+    setActivePage(1)
+  }
 
   const handleFilterSubmit = e => {
     e.preventDefault()
     setFinalFilterValue(filterValue)
+    /** reset pagination if filter is applied */
+    setActiveOffset(0)
+    setActivePage(1)
+    props.history.push("/admin/consumers")
   }
 
   const fetchConsumersReq = {
@@ -75,6 +86,7 @@ export default function ListConsumers() {
   }
 
   if (finalFilterValue.length > 0) {
+    /** Check whether the filter text is phone no. or email */
     const isPhoneNo = isNaN(filterValue) === false
     fetchConsumersReq.filter = {
       filterBy: isPhoneNo ? "Mobile" : "Email",
@@ -122,6 +134,7 @@ export default function ListConsumers() {
             totalItemsCount={consumersCount}
             pageRangeDisplayed={5}
             onChange={(active) => {
+              props.history.push(`/admin/consumers/p${active}`)
               setActiveOffset(getOffsetUsingPageNo(active))
               setActivePage(active)
             }}
