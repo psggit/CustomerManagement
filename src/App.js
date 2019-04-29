@@ -16,6 +16,14 @@ import { authTokenInfo } from "./Api"
 const history = createBrowserHistory()
 
 function App() {
+  const [appKey, setAppKey] = useState(0)
+  let x = appKey
+  useEffect(() => {
+    history.listen(location => {
+      setAppKey(++x)
+    })
+  })
+
   useEffect(() => {
     authTokenInfo()
       .then(json => {
@@ -29,7 +37,7 @@ function App() {
   }, [])
 
   return (
-    <Router history={history}>
+    <Router key={appKey} history={history}>
       <Switch>
         <Route
           exact
@@ -45,11 +53,6 @@ function App() {
           <Route
             exact
             path="/admin/consumers"
-            render={props => <ListConsumers {...props} />}
-          />
-          <Route
-            exact
-            path="/admin/consumers/:pageno"
             render={props => <ListConsumers {...props} />}
           />
           <Route
