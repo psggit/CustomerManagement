@@ -3,11 +3,11 @@ import { useEffect, useState, useRef } from "react"
 import { fetchConsumers } from "../Api"
 import Table from "Components/Table"
 import Input from "Components/Input"
-import { Form, FormGroup } from "Components/Form"
+import { Form } from "Components/Form"
 import Icon from "Components/Icon"
 import PageHeading from "Components/PageHeading"
 import Pagination from "react-js-pagination"
-import { getOffsetUsingPageNo } from "../utils/helpers";
+import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "../utils/helpers";
 import { NavLink } from 'react-router-dom'
 
 const tableColumns = [
@@ -53,17 +53,22 @@ const tableColumns = [
   }
 ]
 
-
 export default function ListConsumers(props) {
-  const pageNo = props.match.params.pageno ? parseInt(props.match.params.pageno.split("p")[1]) : 1
+  const pageNo = parseInt(getQueryParamByName("page")) || 1
+  const searchValue = getQueryParamByName("search") || ""
   const limit = 20
   const [consumers, setConsumers] = useState([])
   const [consumersCount, setConsumersCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
   const [activePage, setActivePage] = useState(pageNo)
   const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo))
-  const [filterValue, setFilterValue] = useState("")
-  const [finalFilterValue, setFinalFilterValue] = useState("")
+
+  /** 
+   * filterValue will change for onChange event, but
+   * finalFilterValue will be used for applying filter 
+   * */
+  const [filterValue, setFilterValue] = useState(searchValue)
+  const [finalFilterValue, setFinalFilterValue] = useState(searchValue)
 
   if (filterValue.length === 0 && finalFilterValue.length) {
     setFinalFilterValue("")
@@ -71,13 +76,32 @@ export default function ListConsumers(props) {
     setActivePage(1)
   }
 
+  const resetFilter = () => {
+    setFinalFilterValue("")
+    setFilterValue("")
+    props.history.push("/admin/consumers")
+  }
+
+  /** Filter will be applied only on submit  */
   const handleFilterSubmit = e => {
     e.preventDefault()
     setFinalFilterValue(filterValue)
     /** reset pagination if filter is applied */
     setActiveOffset(0)
     setActivePage(1)
-    props.history.push("/admin/consumers")
+    props.history.push(`/admin/consumers?search=${filterValue}&page=${1}`)
+  }
+
+  /** change url based on pagination/search  */
+  const handlePageUrl = (searchValue, pageNo) => {
+    const queryObj = {}
+    if (searchValue.length) {
+      queryObj.search = searchValue
+    }
+    if (pageNo) {
+      queryObj.page = pageNo
+    }
+    props.history.push(`/admin/consumers${getQueryUri(queryObj)}`)
   }
 
   const fetchConsumersReq = {
@@ -85,6 +109,7 @@ export default function ListConsumers(props) {
     offset: activeOffset
   }
 
+  /** attach filter in fetchCosumerReq object if is there */
   if (finalFilterValue.length > 0) {
     /** Check whether the filter text is phone no. or email */
     const isPhoneNo = isNaN(filterValue) === false
@@ -94,6 +119,7 @@ export default function ListConsumers(props) {
     }
   }
 
+  /** Api call for fetching consumers  */
   useEffect(() => {
     setLoadingState(false)
     fetchConsumers(fetchConsumersReq)
@@ -116,7 +142,7 @@ export default function ListConsumers(props) {
           <Form onSubmit={handleFilterSubmit}>
             <div style={{ position: "relative" }}>
               <Input type="text" value={filterValue} onChange={(e) => { setFilterValue(e.target.value) }} placeholder="Search by email or phone.." />
-              {filterValue.length ? <Icon onClick={() => { setFinalFilterValue(""); setFilterValue("") }} name="search--cross" /> : ""}
+              {filterValue.length ? <Icon onClick={resetFilter} name="search--cross" /> : ""}
             </div>
           </Form>
         </div>
@@ -134,7 +160,7 @@ export default function ListConsumers(props) {
             totalItemsCount={consumersCount}
             pageRangeDisplayed={5}
             onChange={(active) => {
-              props.history.push(`/admin/consumers/p${active}`)
+              handlePageUrl(searchValue, active)
               setActiveOffset(getOffsetUsingPageNo(active))
               setActivePage(active)
             }}
