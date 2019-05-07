@@ -8,6 +8,7 @@ export default function Input(props) {
       spellCheck="false"
       autoComplete="false"
       className="react--input"
+      type={props.type || "text"}
       {...props}
     />
   )
