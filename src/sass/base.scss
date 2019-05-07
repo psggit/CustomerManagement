@@ -18,6 +18,10 @@ label, p, h1, h2, h3, h4, h5, h6 {
   color: #24292e;
 }
 
+.row {
+  display: flex;
+}
+
 select {
   background-color: #eff3f6;
   border-radius: 4px;
