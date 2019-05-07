@@ -65,7 +65,7 @@ export default function ListConsumers(props) {
   const [consumersCount, setConsumersCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
   const [activePage, setActivePage] = useState(pageNo)
-  const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo))
+  const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo, limit))
 
   /** 
    * filterValue will change for onChange event, but
@@ -161,7 +161,7 @@ export default function ListConsumers(props) {
         pageRangeDisplayed={5}
         onChange={(active) => {
           handlePageUrl(searchValue, active)
-          setActiveOffset(getOffsetUsingPageNo(active))
+          setActiveOffset(getOffsetUsingPageNo(active, limit))
           setActivePage(active)
         }}
       />

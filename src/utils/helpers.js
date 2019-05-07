@@ -1,4 +1,4 @@
-export function getOffsetUsingPageNo(pageNo, itemsCountPerPage = 10) {
+export function getOffsetUsingPageNo(pageNo, itemsCountPerPage) {
   return itemsCountPerPage * (pageNo - 1)
 }
 

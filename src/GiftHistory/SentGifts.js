@@ -84,7 +84,7 @@ export default function SentGifts() {
         totalItemsCount={sentGiftsCount}
         pageRangeDisplayed={5}
         onChange={(active) => {
-          setActiveOffset(getOffsetUsingPageNo(active))
+          setActiveOffset(getOffsetUsingPageNo(active, limit))
           setActivePage(active)
         }}
       />

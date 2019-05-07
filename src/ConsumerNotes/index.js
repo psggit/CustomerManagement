@@ -78,7 +78,7 @@ export default function ConsumerNotes() {
             totalItemsCount={consumersNotesCount}
             pageRangeDisplayed={5}
             onChange={(active) => {
-              setActiveOffset(getOffsetUsingPageNo(active))
+              setActiveOffset(getOffsetUsingPageNo(active, limit))
               setActivePage(active)
             }}
           />

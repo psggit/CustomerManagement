@@ -76,7 +76,7 @@ export default function ConsumerSOA() {
             totalItemsCount={consumersSOAsCount}
             pageRangeDisplayed={5}
             onChange={(active) => {
-              setActiveOffset(getOffsetUsingPageNo(active))
+              setActiveOffset(getOffsetUsingPageNo(active, limit))
               setActivePage(active)
             }}
           />
