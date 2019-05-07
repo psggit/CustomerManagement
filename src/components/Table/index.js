@@ -1,7 +1,7 @@
 import React from "react"
 import "./table.scss"
 
-export default function Table({ data, columns }) {
+export default function Table({ data, columns, isLoaded }) {
   const headers = columns.map((item, i) => <th key={`th-${i}`}>{item.name}</th>)
   return (
     <table border="1">
@@ -26,6 +26,22 @@ export default function Table({ data, columns }) {
             }
           </tr>
         ))}
+        {
+          isLoaded === true && data.length === 0 &&
+          <tr>
+            <td colSpan={columns.length} className="table--state__no-data">
+              No data available
+            </td>
+          </tr>
+        }
+        {
+          isLoaded === false &&
+          <tr>
+            <td className="table--state__loading" colSpan={columns.length}>
+              Loading...
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   )

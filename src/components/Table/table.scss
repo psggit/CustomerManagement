@@ -8,6 +8,14 @@ table {
   }
 }
 
+.table--state__loading {
+  text-align: center;
+}
+
+.table--state__no-data {
+  text-align: center;
+}
+
 thead tr {
   background: #f1f8ff;
   color: #24292e;
