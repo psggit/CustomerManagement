@@ -10,6 +10,7 @@ import ConsumerDetail from "./ConsumerDetail"
 import ConsumerSOA from "./ConsumerSOA"
 import "Components/Pagination/pagination.scss"
 import ConsumerNotes from "./ConsumerNotes"
+import ConsumerGiftSOA from "./ConsumerGiftSOA"
 import Login from "./Login"
 import { authTokenInfo } from "./Api"
 
@@ -22,7 +23,7 @@ function App() {
     history.listen(location => {
       setAppKey(++x)
     })
-  })
+  }, [])
 
   useEffect(() => {
     authTokenInfo()
@@ -69,6 +70,11 @@ function App() {
             exact
             path="/admin/consumers/notes/:consumer_id"
             render={props => <ConsumerNotes {...props} />}
+          />
+          <Route
+            exact
+            path="/admin/consumers/gift-soa/:consumer_id"
+            render={props => <ConsumerGiftSOA {...props} />}
           />
         </Layout>
       </Switch>

@@ -81,3 +81,11 @@ export function fetchNoteIssues() {
   })
     .then(json => json)
 }
+
+export function fetchConsumerGiftSOA(req) {
+  return GET({
+    api: `/admin/gifting/history/${req.consumer_phone}`,
+    apiBase: "orderman"
+  })
+    .then(json => json)
+}
