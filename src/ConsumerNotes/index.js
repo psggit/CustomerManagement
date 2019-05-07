@@ -10,17 +10,17 @@ import Button from "Components/Button"
 
 const tableColumns = [
   {
+    name: "Created At",
+    mapping: "created_at",
+    fn: created_at => created_at.slice(0, 10)
+  },
+  {
     name: "Issue Code",
     mapping: "issue_code"
   },
   {
     name: "Description",
     mapping: "description"
-  },
-  {
-    name: "Created At",
-    mapping: "created_at",
-    fn: created_at => created_at.slice(0, 10)
   },
   {
     name: "Created By",
