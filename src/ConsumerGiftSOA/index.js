@@ -39,7 +39,7 @@ const tableColumns = [
 
 export default function ConsumerGiftSOA() {
   const limit = 20
-  const consumer_phone = parseInt(location.pathname.split("/").pop())
+  const consumer_phone = location.pathname.split("/").pop()
   const [consumersSOAs, setConsumerSOAs] = useState([])
   const [isLoaded, setLoadingState] = useState(false)
   const [activePage, setActivePage] = useState(1)
@@ -64,7 +64,7 @@ export default function ConsumerGiftSOA() {
   }, [activeOffset])
   return (
     <div>
-      <PageHeading>Consumer SOA ({consumer_phone})</PageHeading>
+      <PageHeading>Consumer Gift SOA ({consumer_phone})</PageHeading>
       <Table
         data={consumersSOAs}
         columns={tableColumns}

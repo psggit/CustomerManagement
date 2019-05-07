@@ -11,6 +11,8 @@ import ConsumerSOA from "./ConsumerSOA"
 import "Components/Pagination/pagination.scss"
 import ConsumerNotes from "./ConsumerNotes"
 import ConsumerGiftSOA from "./ConsumerGiftSOA"
+import SentGifts from "./GiftHistory/SentGifts"
+import ReceivedGifts from "./GiftHistory/ReceivedGifts"
 import Login from "./Login"
 import { authTokenInfo } from "./Api"
 
@@ -73,8 +75,18 @@ function App() {
           />
           <Route
             exact
-            path="/admin/consumers/gift-soa/:consumer_id"
+            path="/admin/consumers/gift-soa/:consumer_phone"
             render={props => <ConsumerGiftSOA {...props} />}
+          />
+          <Route
+            exact
+            path="/admin/consumers/sent-gifts/:consumer_phone"
+            render={props => <SentGifts {...props} />}
+          />
+          <Route
+            exact
+            path="/admin/consumers/received-gifts/:consumer_phone"
+            render={props => <ReceivedGifts {...props} />}
           />
         </Layout>
       </Switch>

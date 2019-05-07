@@ -89,3 +89,21 @@ export function fetchConsumerGiftSOA(req) {
   })
     .then(json => json)
 }
+
+export function fetchSentGifts(req) {
+  return POST({
+    api: "/gifting/sentGift",
+    apiBase: "gremlin",
+    data: req
+  })
+    .then(json => json)
+}
+
+export function fetchReceivedGifts(req) {
+  return POST({
+    api: "/gifting/receivedGift",
+    apiBase: "gremlin",
+    data: req
+  })
+    .then(json => json)
+}
