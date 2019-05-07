@@ -8,7 +8,7 @@ RUN yarn install
 
 COPY ./ /app
 
-RUN yarn run build-basket
+RUN yarn run build
 
 # ENV NODE_PATH /app/node_modules/
 # ENV NODE_PATH /usr/lib/node_modules/
