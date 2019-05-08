@@ -3,7 +3,10 @@ import PageHeading from "Components/PageHeading"
 import Table from "Components/Table"
 import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo } from "Utils/helpers"
-import { fetchSentGifts } from "../Api"
+import { fetchSentGifts, cancelGiftCard } from "../Api"
+import Button from "Components/Button"
+import { mountModal } from "Components/ModalBox/api"
+import ConfirmModal from "Components/ModalBox/ConfirmModal"
 
 const tableColumns = [
   {
@@ -39,8 +42,33 @@ const tableColumns = [
     name: "Is redeemed",
     mapping: "is_card_redeemed",
     fn: is_card_redeemed => is_card_redeemed ? "Yes" : "No"
+  },
+  {
+    name: null,
+    mapping: null,
+    fn: item => (
+      <Button
+        onClick={() => {
+          mountModal(ConfirmModal({
+            title: "Cancel Gift Card",
+            message: "Are you sure you want to cancel this gift card?",
+            handleConfirm: () => { handleCancelGiftCard(item.gift_card_number, item.receiver_consumer_id) }
+          }))
+        }}
+        size="small">
+        Cancel
+      </Button>
+    )
   }
 ]
+
+function handleCancelGiftCard(card_number, consumer_id) {
+  const cancelGiftCardReq = {
+    card_number,
+    consumer_id
+  }
+  cancelGiftCard(cancelGiftCardReq)
+}
 
 export default function SentGifts() {
   const limit = 20

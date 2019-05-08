@@ -87,7 +87,12 @@ export function fetchConsumerGiftSOA(req) {
     api: `/admin/gifting/history/${req.consumer_phone}`,
     apiBase: "orderman"
   })
-    .then(json => json)
+    .then(json => {
+      if (json === null) {
+        return []
+      }
+      return json
+    })
 }
 
 export function fetchSentGifts(req) {
@@ -103,6 +108,15 @@ export function fetchReceivedGifts(req) {
   return POST({
     api: "/gifting/receivedGift",
     apiBase: "gremlin",
+    data: req
+  })
+    .then(json => json)
+}
+
+export function cancelGiftCard(req) {
+  return POST({
+    api: "/support/gift/cancel",
+    apiBase: "orderman",
     data: req
   })
     .then(json => json)

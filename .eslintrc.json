@@ -22,6 +22,11 @@
             "error",
             2
         ],
+        "react/display-name": [
+            {
+                "ignoreTranspilerName": true
+            }
+        ],
         "linebreak-style": [
             "error",
             "unix"
