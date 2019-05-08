@@ -2,6 +2,7 @@ import React from "react"
 import { useEffect, useState } from "react"
 import { fetchConsumers } from "../Api"
 import Table from "Components/Table"
+import { tableActionsMenu } from "Components/Table/utils"
 import SearchInput from "Components/SearchInput"
 import { Form } from "Components/Form"
 import PageHeading from "Components/PageHeading"
@@ -43,19 +44,45 @@ const tableColumns = [
   {
     name: null,
     mapping: null,
-    fn: item => <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>
-  },
-  {
-    name: null,
-    mapping: null,
-    fn: item => <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>
-  },
-  {
-    name: null,
-    mapping: null,
-    fn: item => item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink> : ""
+    fn: item => renderActionsMenu(item)
   }
+  // {
+  //   name: null,
+  //   mapping: null,
+  //   fn: item => <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>
+  // },
+  // {
+  //   name: null,
+  //   mapping: null,
+  //   fn: item => <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>
+  // },
+  // {
+  //   name: null,
+  //   mapping: null,
+  //   fn: item => item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink> : ""
+  // },
+  // {
+  //   name: null,
+  //   mapping: null,
+  //   fn: item => item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : ""
+  // },
+  // {
+  //   name: null,
+  //   mapping: null,
+  //   fn: item => item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : ""
+  // }
 ]
+
+function renderActionsMenu(item) {
+  const actionItems = [
+    <li><NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink></li>,
+    <li><NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink></li>,
+    item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink></li> : "",
+    item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink></li> : "",
+    item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Sent gifts</NavLink></li> : ""
+  ]
+  return tableActionsMenu(actionItems)
+}
 
 export default function ListConsumers(props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
