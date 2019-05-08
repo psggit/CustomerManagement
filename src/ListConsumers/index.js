@@ -79,7 +79,7 @@ function renderActionsMenu(item) {
     <li><NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink></li>,
     item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink></li> : "",
     item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink></li> : "",
-    item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Sent gifts</NavLink></li> : ""
+    item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink></li> : ""
   ]
   return tableActionsMenu(actionItems)
 }
