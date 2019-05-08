@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import PageHeading from "Components/PageHeading"
 import Table from "Components/Table"
 import Pagination from "react-js-pagination"
-import { getOffsetUsingPageNo } from "Utils/helpers"
+import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "Utils/helpers"
 import { fetchConsumerSOA } from "../Api"
 
 const tableColumns = [
@@ -33,15 +33,22 @@ const tableColumns = [
   }
 ]
 
-export default function ConsumerSOA() {
+export default function ConsumerSOA(props) {
+  const pageNo = parseInt(getQueryParamByName("page")) || 1
   const limit = 20
   const consumer_id = parseInt(location.pathname.split("/").pop())
   const [consumersSOAs, setConsumerSOAs] = useState([])
   const [consumersSOAsCount, setConsumerSOAsCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
-  const [activePage, setActivePage] = useState(1)
-  const [activeOffset, setActiveOffset] = useState(0)
+  const [activePage, setActivePage] = useState(pageNo)
+  const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo, limit))
 
+  const handlePageUrl = (pageNo) => {
+    const queryObj = {
+      page: pageNo
+    }
+    props.history.push(`/admin/consumers/soa/${consumer_id}${getQueryUri(queryObj)}`)
+  }
 
   useEffect(() => {
     const fetchConsumerSOAReq = {
@@ -63,25 +70,22 @@ export default function ConsumerSOA() {
   return (
     <div>
       <PageHeading>Consumer SOA ({consumer_id})</PageHeading>
-      {
-        isLoaded === true &&
-        <div>
-          <Table
-            data={consumersSOAs}
-            columns={tableColumns}
-          />
-          <Pagination
-            activePage={activePage}
-            itemsCountPerPage={limit}
-            totalItemsCount={consumersSOAsCount}
-            pageRangeDisplayed={5}
-            onChange={(active) => {
-              setActiveOffset(getOffsetUsingPageNo(active, limit))
-              setActivePage(active)
-            }}
-          />
-        </div>
-      }
+      <Table
+        data={consumersSOAs}
+        columns={tableColumns}
+        isLoaded={isLoaded}
+      />
+      <Pagination
+        activePage={activePage}
+        itemsCountPerPage={limit}
+        totalItemsCount={consumersSOAsCount}
+        pageRangeDisplayed={5}
+        onChange={(active) => {
+          handlePageUrl(active)
+          setActiveOffset(getOffsetUsingPageNo(active, limit))
+          setActivePage(active)
+        }}
+      />
     </div>
   )
 }

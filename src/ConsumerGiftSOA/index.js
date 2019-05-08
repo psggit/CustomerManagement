@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"
 import PageHeading from "Components/PageHeading"
 import Table from "Components/Table"
-import Pagination from "react-js-pagination"
-import { getOffsetUsingPageNo } from "Utils/helpers"
 import { fetchConsumerGiftSOA } from "../Api"
 
 const tableColumns = [
@@ -42,15 +40,10 @@ export default function ConsumerGiftSOA() {
   const consumer_phone = location.pathname.split("/").pop()
   const [consumersSOAs, setConsumerSOAs] = useState([])
   const [isLoaded, setLoadingState] = useState(false)
-  const [activePage, setActivePage] = useState(1)
-  const [activeOffset, setActiveOffset] = useState(0)
-
 
   useEffect(() => {
     const fetchConsumerGiftSOAReq = {
-      consumer_phone,
-      limit,
-      offset: activeOffset
+      consumer_phone
     }
     fetchConsumerGiftSOA(fetchConsumerGiftSOAReq)
       .then(fetchConsumerGiftSOARes => {
@@ -61,7 +54,7 @@ export default function ConsumerGiftSOA() {
         console.log(err)
         setLoadingState(true)
       })
-  }, [activeOffset])
+  }, [])
   return (
     <div>
       <PageHeading>Consumer Gift SOA ({consumer_phone})</PageHeading>

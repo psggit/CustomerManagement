@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import PageHeading from "Components/PageHeading"
 import Table from "Components/Table"
 import Pagination from "react-js-pagination"
-import { getOffsetUsingPageNo } from "Utils/helpers"
+import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "Utils/helpers"
 import { fetchSentGifts, cancelGiftCard } from "../Api"
 import Button from "Components/Button"
 import { mountModal } from "Components/ModalBox/api"
@@ -70,15 +70,22 @@ function handleCancelGiftCard(card_number, consumer_id) {
   cancelGiftCard(cancelGiftCardReq)
 }
 
-export default function SentGifts() {
+export default function SentGifts(props) {
+  const pageNo = parseInt(getQueryParamByName("page")) || 1
   const limit = 20
   const consumer_phone = location.pathname.split("/").pop()
   const [sentGifts, setSentGifts] = useState([])
   const [sentGiftsCount, setSentGiftsCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
-  const [activePage, setActivePage] = useState(1)
-  const [activeOffset, setActiveOffset] = useState(0)
+  const [activePage, setActivePage] = useState(pageNo)
+  const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo, limit))
 
+  const handlePageUrl = (pageNo) => {
+    const queryObj = {
+      page: pageNo
+    }
+    props.history.push(`/admin/consumers/sent-gifts/${consumer_phone}${getQueryUri(queryObj)}`)
+  }
 
   useEffect(() => {
     const fetchSentGiftsReq = {
@@ -112,6 +119,7 @@ export default function SentGifts() {
         totalItemsCount={sentGiftsCount}
         pageRangeDisplayed={5}
         onChange={(active) => {
+          handlePageUrl(active)
           setActiveOffset(getOffsetUsingPageNo(active, limit))
           setActivePage(active)
         }}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import PageHeading from "Components/PageHeading"
 import Table from "Components/Table"
 import Pagination from "react-js-pagination"
-import { getOffsetUsingPageNo } from "Utils/helpers"
+import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "Utils/helpers"
 import { fetchConsumerNotes } from "../Api"
 import { mountModal } from "Components/ModalBox/api"
 import CreateNoteModal from "./CreateNoteModal"
@@ -28,20 +28,29 @@ const tableColumns = [
   }
 ]
 
-export default function ConsumerNotes() {
+export default function ConsumerNotes(props) {
+  const pageNo = parseInt(getQueryParamByName("page")) || 1
   const consumer_id = parseInt(location.pathname.split("/").pop())
   const limit = 50
   const [consumersNotes, setConsumerNotes] = useState([])
   const [consumersNotesCount, setConsumerNotesCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
-  const [activePage, setActivePage] = useState(1)
-  const [activeOffset, setActiveOffset] = useState(0)
+  const [activePage, setActivePage] = useState(pageNo)
+  const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo, limit))
 
   const fetchConsumerNotesReq = {
     consumer_id,
     limit,
     offset: activeOffset
   }
+
+  const handlePageUrl = (pageNo) => {
+    const queryObj = {
+      page: pageNo
+    }
+    props.history.push(`/admin/consumers/notes/${consumer_id}${getQueryUri(queryObj)}`)
+  }
+
   useEffect(() => {
     fetchConsumerNotes(fetchConsumerNotesReq)
       .then(fetchConsumerNotesRes => {
@@ -65,29 +74,22 @@ export default function ConsumerNotes() {
           Create New
         </Button>
       </div>
-      {
-        isLoaded === true &&
-        <div>
-          <Table
-            data={consumersNotes}
-            columns={tableColumns}
-          />
-          <Pagination
-            activePage={activePage}
-            itemsCountPerPage={limit}
-            totalItemsCount={consumersNotesCount}
-            pageRangeDisplayed={5}
-            onChange={(active) => {
-              setActiveOffset(getOffsetUsingPageNo(active, limit))
-              setActivePage(active)
-            }}
-          />
-        </div>
-      }
-      {
-        isLoaded === false &&
-        <h3>Loading...</h3>
-      }
+      <Table
+        data={consumersNotes}
+        columns={tableColumns}
+        isLoaded={isLoaded}
+      />
+      <Pagination
+        activePage={activePage}
+        itemsCountPerPage={limit}
+        totalItemsCount={consumersNotesCount}
+        pageRangeDisplayed={5}
+        onChange={(active) => {
+          handlePageUrl(active)
+          setActiveOffset(getOffsetUsingPageNo(active, limit))
+          setActivePage(active)
+        }}
+      />
     </div>
   )
 }
