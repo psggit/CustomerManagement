@@ -2,13 +2,21 @@ import React from "react"
 import { useEffect, useState } from "react"
 import { fetchConsumers } from "../Api"
 import Table from "Components/Table"
-import { tableActionsMenu } from "Components/Table/utils"
+import { mountTableActionsMenu } from "Components/Table/utils"
 import SearchInput from "Components/SearchInput"
 import { Form } from "Components/Form"
 import PageHeading from "Components/PageHeading"
 import Pagination from "react-js-pagination"
-import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "../utils/helpers"
-import { NavLink } from "react-router-dom"
+import {
+  getOffsetUsingPageNo,
+  getQueryParamByName,
+  getQueryUri,
+  getPositionBasedOnContainer
+} from "../utils/helpers"
+
+import Icon from "Components/Icon"
+import { unmountTableActionsMenu } from "../components/Table/utils";
+import { NavLink } from "react-router-dom/cjs/react-router-dom";
 
 const tableColumns = [
   {
@@ -44,44 +52,25 @@ const tableColumns = [
   {
     name: null,
     mapping: null,
-    fn: item => renderActionsMenu(item)
+    actionMenu: true,
+    fn: (item, history) => <Icon
+      onMouseOver={(e) => { renderActionsMenu(e, item, history) }}
+      name="more-circle"
+    />
   }
-  // {
-  //   name: null,
-  //   mapping: null,
-  //   fn: item => <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>
-  // },
-  // {
-  //   name: null,
-  //   mapping: null,
-  //   fn: item => <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>
-  // },
-  // {
-  //   name: null,
-  //   mapping: null,
-  //   fn: item => item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink> : ""
-  // },
-  // {
-  //   name: null,
-  //   mapping: null,
-  //   fn: item => item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : ""
-  // },
-  // {
-  //   name: null,
-  //   mapping: null,
-  //   fn: item => item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : ""
-  // }
 ]
 
-function renderActionsMenu(item) {
+function renderActionsMenu(e, item, history) {
   const actionItems = [
-    <li><NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink></li>,
-    <li><NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink></li>,
-    item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink></li> : "",
-    item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink></li> : "",
-    item.gift_wallet_id !== 0 ? <li><NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink></li> : ""
+    <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>,
+    <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>,
+    item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink> : "",
+    item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : "",
+    item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : ""
   ]
-  return tableActionsMenu(actionItems)
+
+  const position = getPositionBasedOnContainer(e.target)
+  mountTableActionsMenu(position, actionItems, history)
 }
 
 export default function ListConsumers(props) {
@@ -93,6 +82,7 @@ export default function ListConsumers(props) {
   const [isLoaded, setLoadingState] = useState(false)
   const [activePage, setActivePage] = useState(pageNo)
   const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo, limit))
+  const [enableFixedComponent, toggleFixedComponent] = useState(false)
 
   /** 
    * filterValue will change for onChange event, but
@@ -104,6 +94,13 @@ export default function ListConsumers(props) {
   const reset = () => {
     props.history.push("/admin/consumers")
   }
+
+  useEffect(() => {
+    document.addEventListener("click", unmountTableActionsMenu)
+    return function cleanup() {
+      document.removeEventListener("click", unmountTableActionsMenu)
+    }
+  }, [])
 
   /** Filter will be applied only on submit  */
   const handleFilterSubmit = e => {
@@ -177,6 +174,7 @@ export default function ListConsumers(props) {
         </div>
       </div>
       <Table
+        history={props.history}
         data={consumers}
         columns={tableColumns}
         isLoaded={isLoaded}

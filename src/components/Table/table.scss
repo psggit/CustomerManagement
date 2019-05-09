@@ -23,6 +23,7 @@ thead tr {
 
 td, th {
   padding: 6px 10px;
+  position: relative;
 }
 
 td a:hover {
@@ -31,7 +32,16 @@ td a:hover {
 
 
 .table--action-menu {
-  li {
-    list-style-type: none;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 #9b9b9b;
+  border-radius: 5px;
+  a {
+    cursor: pointer;
+    display: block;
+    padding: 5px 20px;
+    color: #333;
+  }
+  a:hover {
+    background: #f1f8ff;
   }
 }
