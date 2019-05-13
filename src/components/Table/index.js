@@ -1,7 +1,7 @@
 import React from "react"
 import "./table.scss"
 
-export default function Table({ data, columns, isLoaded, history }) {
+export default function Table({ data, columns, isLoaded }) {
   const headers = columns.map((item, i) => <th key={`th-${i}`}>{item.name}</th>)
   return (
     <div className="table--container">
@@ -20,7 +20,7 @@ export default function Table({ data, columns, isLoaded, history }) {
                     {
                       col.mapping !== null
                         ? (col.fn ? col.fn(row[col.mapping]) : row[col.mapping])
-                        : col.fn(row, history)
+                        : col.fn(row)
                     }
                   </td>
                 ))

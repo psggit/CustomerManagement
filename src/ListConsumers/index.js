@@ -18,19 +18,6 @@ import Icon from "Components/Icon"
 import { unmountTableActionsMenu } from "../components/Table/utils";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 
-function renderActionsMenu(e, item, history) {
-  const actionItems = [
-    <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>,
-    <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>,
-    item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink> : "",
-    item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : "",
-    item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : ""
-  ]
-
-  const position = getPositionBasedOnContainer(e.target)
-  mountTableActionsMenu(position, actionItems, history)
-}
-
 export default function ListConsumers(props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const searchValue = getQueryParamByName("search") || ""
@@ -40,7 +27,6 @@ export default function ListConsumers(props) {
   const [isLoaded, setLoadingState] = useState(false)
   const [activePage, setActivePage] = useState(pageNo)
   const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo, limit))
-  const [enableFixedComponent, toggleFixedComponent] = useState(false)
 
   /** 
    * filterValue will change for onChange event, but
@@ -116,6 +102,20 @@ export default function ListConsumers(props) {
       })
   }, [activeOffset, finalFilterValue])
 
+
+  function renderActionsMenu(e, item) {
+    const actionItems = [
+      <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>,
+      <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>,
+      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink> : "",
+      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : "",
+      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : ""
+    ]
+
+    const position = getPositionBasedOnContainer(e.target)
+    mountTableActionsMenu(position, actionItems, props.history)
+  }
+
   const tableColumns = [
     {
       name: "ID",
@@ -151,8 +151,8 @@ export default function ListConsumers(props) {
       name: null,
       mapping: null,
       actionMenu: true,
-      fn: (item, history) => <Icon
-        onMouseOver={(e) => { renderActionsMenu(e, item, history) }}
+      fn: (item) => <Icon
+        onMouseOver={(e) => { renderActionsMenu(e, item) }}
         name="more-circle"
       />
     }
@@ -174,7 +174,6 @@ export default function ListConsumers(props) {
         </div>
       </div>
       <Table
-        history={props.history}
         data={consumers}
         columns={tableColumns}
         isLoaded={isLoaded}

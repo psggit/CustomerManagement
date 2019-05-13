@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
 
 module.exports = merge(common, {
-  mode: "production",
+  mode: "development",
   devtool: "source-map",
   plugins: [
     new MiniCssExtractPlugin({
