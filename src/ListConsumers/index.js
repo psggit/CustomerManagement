@@ -18,48 +18,6 @@ import Icon from "Components/Icon"
 import { unmountTableActionsMenu } from "../components/Table/utils";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 
-const tableColumns = [
-  {
-    name: "ID",
-    mapping: "consumer_id",
-    fn: id => <NavLink to={`/admin/consumers/detail/${id}`}>{id}</NavLink>
-  },
-  {
-    name: "Name",
-    mapping: "name",
-  },
-  {
-    name: "Email",
-    mapping: "email"
-  },
-  {
-    name: "Gender",
-    mapping: "gender"
-  },
-  {
-    name: "Phone no.",
-    mapping: "mobile_number"
-  },
-  {
-    name: "DOB",
-    mapping: "dob",
-    fn: dob => dob.slice(0, 10)
-  },
-  {
-    name: "Credits",
-    mapping: "credits"
-  },
-  {
-    name: null,
-    mapping: null,
-    actionMenu: true,
-    fn: (item, history) => <Icon
-      onMouseOver={(e) => { renderActionsMenu(e, item, history) }}
-      name="more-circle"
-    />
-  }
-]
-
 function renderActionsMenu(e, item, history) {
   const actionItems = [
     <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>,
@@ -157,6 +115,48 @@ export default function ListConsumers(props) {
         setLoadingState(true)
       })
   }, [activeOffset, finalFilterValue])
+
+  const tableColumns = [
+    {
+      name: "ID",
+      mapping: "consumer_id",
+      fn: id => <NavLink to={`/admin/consumers/detail/${id}`}>{id}</NavLink>
+    },
+    {
+      name: "Name",
+      mapping: "name",
+    },
+    {
+      name: "Email",
+      mapping: "email"
+    },
+    {
+      name: "Gender",
+      mapping: "gender"
+    },
+    {
+      name: "Phone no.",
+      mapping: "mobile_number"
+    },
+    {
+      name: "DOB",
+      mapping: "dob",
+      fn: dob => dob.slice(0, 10)
+    },
+    {
+      name: "Credits",
+      mapping: "credits"
+    },
+    {
+      name: null,
+      mapping: null,
+      actionMenu: true,
+      fn: (item, history) => <Icon
+        onMouseOver={(e) => { renderActionsMenu(e, item, history) }}
+        name="more-circle"
+      />
+    }
+  ]
 
   return (
     <div>

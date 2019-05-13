@@ -121,3 +121,15 @@ export function cancelGiftCard(req) {
   })
     .then(json => json)
 }
+
+export function convertToCredit(req) {
+  return POST({
+    api: "/support/gift/convert_to_credits",
+    apiBase: "orderman",
+    data: req
+  })
+    .then(json => {
+      Notify("Successfully converted", "success")
+      data.refresh()
+    })
+}

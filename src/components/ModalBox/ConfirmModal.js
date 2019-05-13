@@ -8,16 +8,17 @@ export default function ConfirmModal(props) {
   return class ConfirmModal extends React.Component {
     render() {
       const { title, message, handleConfirm } = props
-      console.log(handleConfirm)
       return (
-        <ModalBox>
-          <ModalHeader><h3>{title}</h3></ModalHeader>
-          <ModalBody>{message}</ModalBody>
-          <ModalFooter>
-            <Button onClick={unmountModal}>Cancel</Button>
-            <Button onClick={handleConfirm}>Confirm</Button>
-          </ModalFooter>
-        </ModalBox>
+        <div id="confirm-modal">
+          <ModalBox>
+            <ModalHeader><h3>{title}</h3></ModalHeader>
+            <ModalBody>{message}</ModalBody>
+            <ModalFooter>
+              <Button appearance="secondary" onClick={unmountModal}>Cancel</Button>
+              <Button appearance="primary" onClick={handleConfirm}>Confirm</Button>
+            </ModalFooter>
+          </ModalBox>
+        </div>
       )
     }
   }

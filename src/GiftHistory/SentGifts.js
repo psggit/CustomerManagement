@@ -48,6 +48,7 @@ const tableColumns = [
     mapping: null,
     fn: item => (
       <Button
+        appearance="secondary"
         onClick={() => {
           mountModal(ConfirmModal({
             title: "Cancel Gift Card",

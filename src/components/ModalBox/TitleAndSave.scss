@@ -1,4 +1,5 @@
-.modal--box__header {
+#title-and-save {
+  .modal--box__header {
   text-align: center;
   padding: 20px;
   h3 {
@@ -23,4 +24,5 @@
   button:first-child {
     margin-right: 10px;
   }
+}
 }

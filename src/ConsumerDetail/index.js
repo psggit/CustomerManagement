@@ -119,7 +119,7 @@ export default function ConsumerDetail() {
             <Input disabled defaultValue={consumerDetail.pin_attempts} />
           </FormGroup>
 
-          <Button onClick={handleSubmit}>Save</Button>
+          <Button appearance="primary" onClick={handleSubmit}>Save</Button>
         </Form>
       }
     </div>

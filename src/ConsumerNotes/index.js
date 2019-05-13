@@ -65,6 +65,7 @@ export default function ConsumerNotes(props) {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <PageHeading>Consumer Notes ({consumer_id})</PageHeading>
         <Button
+          appearance="primary"
           onClick={() => {
             mountModal(CreateNoteModal({
               consumer_id

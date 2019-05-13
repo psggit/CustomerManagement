@@ -1,4 +1,5 @@
-.modal--box__header {
+#confirm-modal {
+  .modal--box__header {
   text-align: center;
   padding: 20px;
   h3 {
@@ -8,12 +9,14 @@
 
 .modal--box__container {
   background: #fff;
+  min-height: 200px;
 }
 
 .modal--box__body {
-  border-top: 1px solid #dfdfdf;
-  border-bottom: 1px solid #dfdfdf;
+  // border-top: 1px solid #dfdfdf;
+  // border-bottom: 1px solid #dfdfdf;
   padding: 20px;
+  text-align: center;
 }
 
 .modal--box__footer {
@@ -23,4 +26,5 @@
   button:first-child {
     margin-right: 10px;
   }
+}
 }

@@ -4,6 +4,7 @@ import Table from "Components/Table"
 import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "Utils/helpers"
 import { fetchReceivedGifts } from "../Api"
+import Button from "Components/Button"
 
 const tableColumns = [
   {
@@ -39,8 +40,37 @@ const tableColumns = [
     name: "Is redeemed",
     mapping: "is_card_redeemed",
     fn: is_card_redeemed => is_card_redeemed ? "Yes" : "No"
+  },
+  {
+    name: null,
+    mapping: null,
+    fn: item =>
+      item.receiver_consumer_id
+        ? (
+          (item.is_card_redeemed || item.is_card_cancelled || item.is_convert_to_credit || item.gift_type !== "sku")
+            ? getCardStatus(item)
+            : <Button
+              appearance="secondary"
+              size="small"
+            >
+              Convert
+              </Button>
+        )
+        : ''
   }
 ]
+
+function getCardStatus(item) {
+  if (item.is_card_redeemed) {
+    return "REDEEMED"
+  } else if (item.is_card_cancelled) {
+    return "CANCELLED"
+  } else if (item.is_convert_to_credit) {
+    return "CONVERTED CREDITS"
+  } else {
+    return "MONEY CARD"
+  }
+}
 
 export default function ReceivedGifts(props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
