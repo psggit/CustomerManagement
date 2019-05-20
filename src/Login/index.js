@@ -28,7 +28,9 @@ export default function Login(props) {
           props.history.push("/admin")
         })
         .catch(err => {
-          console.log(err)
+          err.response.json().then(json => {
+            alert(json.message)
+          })
           setLoadingState(false)
         })
     }
