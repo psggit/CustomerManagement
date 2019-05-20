@@ -12,6 +12,7 @@ export default function SearchInput(props) {
   return (
     <div className="search--input">
       <Input
+        maxLength={props.maxLength}
         type="text"
         value={props.filterValue}
         onChange={(e) => { props.setFilterValue(e.target.value) }}

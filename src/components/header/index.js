@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom"
 export default function Header({ history }) {
   const session = getSession()
   const hasuraID = session ? session.hasura_id : null
+
   const handleClick = e => {
     e.preventDefault()
     authLogout()

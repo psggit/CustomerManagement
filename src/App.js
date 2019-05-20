@@ -52,7 +52,7 @@ function App() {
             exact
             path="/admin"
             render={props => <ListConsumers {...props} />}
-          />promoters
+          />
           <Route
             exact
             path="/admin/consumers"

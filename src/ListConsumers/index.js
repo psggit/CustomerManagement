@@ -20,13 +20,22 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom";
 
 export default function ListConsumers(props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
-  const searchValue = getQueryParamByName("search") || ""
+  const searchValue = getQueryParamByName("q") || ""
+  const filterByValue = getQueryParamByName("f") || "0"
   const limit = 20
   const [consumers, setConsumers] = useState([])
   const [consumersCount, setConsumersCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
   const [activePage, setActivePage] = useState(pageNo)
   const [activeOffset, setActiveOffset] = useState(getOffsetUsingPageNo(pageNo, limit))
+  const [filterBy, setFilterBy] = useState(filterByValue)
+
+  const filters = {
+    "0": null,
+    "1": "Mobile",
+    "2": "Email",
+    "3": "Id"
+  }
 
   /** 
    * filterValue will change for onChange event, but
@@ -37,6 +46,9 @@ export default function ListConsumers(props) {
 
   const reset = () => {
     props.history.push("/admin/consumers")
+    setFilterValue("")
+    setFinalFilterValue("")
+    setFilterBy("0")
   }
 
   useEffect(() => {
@@ -53,7 +65,7 @@ export default function ListConsumers(props) {
     /** reset pagination if filter is applied */
     setActiveOffset(0)
     setActivePage(1)
-    props.history.push(`/admin/consumers?search=${filterValue}&page=${1}`)
+    props.history.push(`/admin/consumers?f=${filterBy}&q=${filterValue}&page=${1}`)
   }
 
   /** change url based on pagination/search  */
@@ -79,10 +91,8 @@ export default function ListConsumers(props) {
 
   /** attach filter in fetchCosumerReq object if is there */
   if (finalFilterValue.length > 0) {
-    /** Check whether the filter text is phone no. or email */
-    const isPhoneNo = isNaN(filterValue) === false
     fetchConsumersReq.filter = {
-      filterBy: isPhoneNo ? "Mobile" : "Email",
+      filterBy: filters[filterBy],
       value: filterValue
     }
   }
@@ -158,26 +168,68 @@ export default function ListConsumers(props) {
     }
   ]
 
+  const handleFilterByChange = e => {
+    const { value } = e.target
+    setFilterBy(value)
+    setFilterValue("")
+    setFinalFilterValue("")
+  }
+
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center", alignContent: "center" }}>
         <PageHeading>Consumers List ({consumersCount})</PageHeading>
-        <div style={{ paddingBottom: "20px", marginLeft: "20px" }}>
+
+        <div style={{ marginLeft: "20px" }}>
+          <select value={filterBy} onChange={handleFilterByChange}>
+            {(filterBy === "0") &&
+              <option value="0">Select filter</option>}
+            <option value="1">Mobile</option>
+            <option value="2">Email</option>
+            <option value="3">Id</option>
+          </select>
+        </div>
+
+        <div style={{ marginLeft: "20px" }}>
           <Form onSubmit={handleFilterSubmit}>
-            <SearchInput
-              reset={reset}
-              setFilterValue={setFilterValue}
-              filterValue={filterValue}
-              placeholder="Search by email or phone.."
-            />
+            {
+              filterBy === "1" &&
+              <SearchInput
+                maxLength="10"
+                reset={reset}
+                setFilterValue={setFilterValue}
+                filterValue={filterValue}
+                placeholder="Search by mobile..."
+              />
+            }
+            {
+              filterBy === "2" &&
+              <SearchInput
+                reset={reset}
+                setFilterValue={setFilterValue}
+                filterValue={filterValue}
+                placeholder="Search by email..."
+              />
+            }
+            {
+              filterBy === "3" &&
+              <SearchInput
+                reset={reset}
+                setFilterValue={setFilterValue}
+                filterValue={filterValue}
+                placeholder="Search by id..."
+              />
+            }
           </Form>
         </div>
       </div>
-      <Table
-        data={consumers}
-        columns={tableColumns}
-        isLoaded={isLoaded}
-      />
+      <div style={{ marginTop: "20px" }}>
+        <Table
+          data={consumers}
+          columns={tableColumns}
+          isLoaded={isLoaded}
+        />
+      </div>
       <Pagination
         activePage={activePage}
         itemsCountPerPage={limit}

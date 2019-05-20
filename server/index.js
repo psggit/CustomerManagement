@@ -1,6 +1,11 @@
 const express = require("express")
 const path = require("path")
 const app = express()
+const helmet = requrie("helmet")
+
+app.use(helmet({
+  frameguard: "deny"
+}))
 
 app.get("*.js", (req, res, next) => {
   console.log("Processing js files....")

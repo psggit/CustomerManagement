@@ -6,17 +6,16 @@
  * Helper methods to create window.fetch instance
  */
 
+import { getSession } from "./../session"
 const getToken = () => ({
   // "Authorization": `Bearer ${localStorage.getItem("auth-token")}`,
-  "x-hasura-role": `${localStorage.getItem("x-hasura-role")}`,
-  "hasura-id": `${localStorage.getItem("hasura-id")}`
+  "x-hasura-role": getSession().hasura_role
 })
 
 function getHeaders(type) {
   const json_headers = {
     "Accept": "application/json",
-    "Content-Type": "application/json",
-    "App-Name": "HipBar-Delivery"
+    "Content-Type": "application/json"
   }
 
   switch (type) {
@@ -27,7 +26,7 @@ function getHeaders(type) {
     case "RSS":
       return Object.assign({}, { "Accept": "application/xml", "Content-Type": "application/xml" })
     default:
-      return Object.assign({}, json_headers)
+      return Object.assign({}, json_headers, getToken())
   }
 }
 
