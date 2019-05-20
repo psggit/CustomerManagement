@@ -30,12 +30,18 @@ function App() {
   useEffect(() => {
     authTokenInfo()
       .then(json => {
-        if (history.location.pathname.includes("login"))
+        if (history.location.pathname.includes("login")) {
+          createSession(json)
           location.href = "/admin"
+        }
       })
       .catch(err => {
-        if (!history.location.pathname.includes("login"))
+        if (!history.location.pathname.includes("login")) {
+          err.response.json().then(json => {
+            alert(json.message)
+          })
           location.href = "/admin/login"
+        }
       })
   }, [])
 
