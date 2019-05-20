@@ -1,7 +1,7 @@
 const express = require("express")
 const path = require("path")
 const app = express()
-const helmet = requrie("helmet")
+const helmet = require("helmet")
 
 app.use(helmet({
   frameguard: "deny"
