@@ -15,6 +15,7 @@ import SentGifts from "./GiftHistory/SentGifts"
 import ReceivedGifts from "./GiftHistory/ReceivedGifts"
 import Login from "./Login"
 import { authTokenInfo } from "./Api"
+import { createSession } from "./utils/session"
 
 const history = createBrowserHistory()
 
