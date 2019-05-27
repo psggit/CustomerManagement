@@ -118,7 +118,7 @@ export function fetchReceivedGifts(req) {
 
 export function cancelGiftCard(req) {
   return POST({
-    api: "/support/gift/cancel",
+    api: "/support/gift/cancelgiftCard",
     apiBase: "orderman",
     data: req
   })
