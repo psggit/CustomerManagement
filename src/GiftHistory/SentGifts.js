@@ -48,7 +48,8 @@ const tableColumns = [
     mapping: null,
     fn: item =>
       item.is_card_redeemed || item.is_card_cancelled
-        ? (
+        ? getCardStatus(item)
+        : (
           <Button
             appearance="secondary"
             onClick={() => {
@@ -62,7 +63,6 @@ const tableColumns = [
             Cancel
       </Button>
         )
-        : getCardStatus(item)
   }
 ]
 
