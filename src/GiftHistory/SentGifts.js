@@ -69,6 +69,14 @@ function handleCancelGiftCard(card_number, consumer_id) {
     consumer_id
   }
   cancelGiftCard(cancelGiftCardReq)
+    .then(json => {
+      alert(json.message)
+    })
+    .catch(err => {
+      err.response.json().then(json => {
+        alert(json.message)
+      })
+    })
 }
 
 export default function SentGifts(props) {
