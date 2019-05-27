@@ -5,7 +5,7 @@ import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "Utils/helpers"
 import { fetchSentGifts, cancelGiftCard } from "../Api"
 import Button from "Components/Button"
-import { mountModal } from "Components/ModalBox/api"
+import { mountModal, unmountModal } from "Components/ModalBox/api"
 import ConfirmModal from "Components/ModalBox/ConfirmModal"
 
 const tableColumns = [
@@ -46,22 +46,38 @@ const tableColumns = [
   {
     name: null,
     mapping: null,
-    fn: item => (
-      <Button
-        appearance="secondary"
-        onClick={() => {
-          mountModal(ConfirmModal({
-            title: "Cancel Gift Card",
-            message: "Are you sure you want to cancel this gift card?",
-            handleConfirm: () => { handleCancelGiftCard(item.gift_card_number, item.receiver_consumer_id) }
-          }))
-        }}
-        size="small">
-        Cancel
+    fn: item =>
+      item.is_card_redeemed || item.is_card_cancelled
+        ? getCardStatus(item)
+        : (
+          <Button
+            appearance="secondary"
+            onClick={() => {
+              mountModal(ConfirmModal({
+                title: "Cancel Gift Card",
+                message: "Are you sure you want to cancel this gift card?",
+                handleConfirm: () => { handleCancelGiftCard(item.gift_card_number, item.receiver_consumer_id) }
+              }))
+            }}
+            size="small">
+            Cancel
       </Button>
-    )
+        )
   }
 ]
+
+function getCardStatus(item) {
+  if (item.is_card_redeemed) {
+    return "REDEEMED"
+  } else if (item.is_card_cancelled) {
+    return "CANCELLED"
+  } else if (item.is_convert_to_credit) {
+    return "CONVERTED CREDITS"
+  } else {
+    return "MONEY CARD"
+  }
+}
+
 
 function handleCancelGiftCard(card_number, consumer_id) {
   const cancelGiftCardReq = {
@@ -71,10 +87,12 @@ function handleCancelGiftCard(card_number, consumer_id) {
   cancelGiftCard(cancelGiftCardReq)
     .then(json => {
       alert(json.message)
+      unmountModal()
     })
     .catch(err => {
       err.response.json().then(json => {
         alert(json.message)
+        unmountModal()
       })
     })
 }
