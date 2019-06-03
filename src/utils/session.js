@@ -7,6 +7,7 @@ export function createSession(user) {
     hasura_id: user.hasura_id,
     hasura_role: getHasuraRole(user.hasura_roles)
   }
+  console.log(getHasuraRole(user.hasura_roles))
   localStorage.setItem("__hipbarU__", JSON.stringify(__hipbarU__))
 }
 
