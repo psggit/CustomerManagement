@@ -44,6 +44,7 @@
     "build-client": "webpack --config ./webpack-config/client/webpack.prod.js",
     "build-client-basket": "BASE_URL=basketball38.hasura-app.io webpack --config ./webpack-config/client/webpack.prod.js",
     "build-client-prod": "BASE_URL=hipbar.com webpack --config ./webpack-config/client/webpack.prod.js",
+    "build-client-prod-dev": "BASE_URL=hipbar-dev.com webpack --config ./webpack-config/client/webpack.prod.js",
     "build-client-staging": "BASE_URL=hipbar-stg.com webpack --config ./webpack-config/client/webpack.prod.js",
     "build-ssr": "webpack --config ./webpack-config/ssr/webpack.ssr.js",
     "build": "yarn run build-client",
