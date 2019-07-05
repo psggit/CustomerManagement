@@ -4,6 +4,7 @@ import PageHeading from "Components/PageHeading"
 import Input from "Components/Input"
 import { Form, FormGroup } from "Components/Form"
 import Button from "Components/Button"
+import Moment from "moment"
 
 export default function ConsumerDetail() {
   const consumer_id = parseInt(location.pathname.split("/").pop())
@@ -100,8 +101,9 @@ export default function ConsumerDetail() {
           </FormGroup>
 
           <FormGroup inline>
-            <label>KYC Status</label>
-            <Input disabled defaultValue={consumerDetail.is_kyc_updated ? "Updated" : "Not updated"} />
+            <label>Basic KYC Updated Date</label>
+            <Input disabled defaultValue={consumerDetail.basic_kyc_date ? Moment(consumerDetail.basic_kyc_date).format("DD-MM-YYYY") : ""} />
+            {/* <Input disabled defaultValue={consumerDetail.is_kyc_updated ? "Updated" : "Not updated"} /> */}
           </FormGroup>
 
           <FormGroup inline>
@@ -111,7 +113,7 @@ export default function ConsumerDetail() {
 
           <FormGroup inline>
             <label>KYC level</label>
-            <Input disabled defaultValue={consumerDetail.level_id} />
+            <Input disabled defaultValue={consumerDetail.level} />
           </FormGroup>
 
           <FormGroup inline>
