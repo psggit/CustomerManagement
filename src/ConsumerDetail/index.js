@@ -50,7 +50,7 @@ export default function ConsumerDetail() {
       <PageHeading>Consumer Detail - {consumerDetail ? consumerDetail.name : ""}</PageHeading>
       {
         consumerDetail &&
-        <Form width="340px">
+        <Form width="500px">
           <FormGroup inline>
             <label>Name</label>
             <Input onChange={(e) => { setName(e.target.value) }} value={name} />
@@ -58,25 +58,27 @@ export default function ConsumerDetail() {
 
           <FormGroup inline>
             <label>Gender</label>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Input
-                onChange={() => { setGender("male") }}
-                checked={gender === "male"}
-                value={gender}
-                name="gender"
-                type="radio"
-              />
-              <label>Male</label>
-            </div>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Input
-                onChange={() => { setGender("female") }}
-                checked={gender === "female"}
-                value={gender}
-                name="gender"
-                type="radio"
-              />
-              <label>Female</label>
+            <div style={{ display: 'flex' }}>
+              <div style={{ display: "flex", alignItems: "center", width: '140px' }}>
+                <Input
+                  onChange={() => { setGender("male") }}
+                  checked={gender === "male"}
+                  value={gender}
+                  name="gender"
+                  type="radio"
+                />
+                <label>Male</label>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Input
+                  onChange={() => { setGender("female") }}
+                  checked={gender === "female"}
+                  value={gender}
+                  name="gender"
+                  type="radio"
+                />
+                <label>Female</label>
+              </div>
             </div>
           </FormGroup>
 
