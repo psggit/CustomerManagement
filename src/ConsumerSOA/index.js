@@ -4,12 +4,13 @@ import Table from "Components/Table"
 import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "Utils/helpers"
 import { fetchConsumerSOA } from "../Api"
+import Moment from "moment"
 
 const tableColumns = [
   {
     name: "Created At",
     mapping: "created_at",
-    fn: created_at => created_at.slice(0, 10)
+    fn: created_at => Moment((created_at)).format("DD-MM-YYYY h:mm a")
   },
   {
     name: "Type",
