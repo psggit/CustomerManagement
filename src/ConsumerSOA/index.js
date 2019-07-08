@@ -10,7 +10,7 @@ const tableColumns = [
   {
     name: "Created At",
     mapping: "created_at",
-    fn: created_at => Moment((created_at)).format("DD-MM-YYYY h:mm a")
+    fn: created_at => Moment((created_at)).format("DD-MM-YYYY h:mm:ss a")
   },
   {
     name: "Type",
