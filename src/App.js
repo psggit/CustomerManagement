@@ -10,6 +10,7 @@ import ConsumerDetail from "./ConsumerDetail"
 import ConsumerSOA from "./ConsumerSOA"
 import "Components/Pagination/pagination.scss"
 import ConsumerNotes from "./ConsumerNotes"
+import ConsumerGiftPayment from "./ConsumerGiftPayment"
 import ConsumerGiftSOA from "./ConsumerGiftSOA"
 import SentGifts from "./GiftHistory/SentGifts"
 import ReceivedGifts from "./GiftHistory/ReceivedGifts"
@@ -74,6 +75,11 @@ function App() {
             exact
             path="/admin/consumers/soa/:consumer_id"
             render={props => <ConsumerSOA {...props} />}
+          />
+          <Route
+            exact
+            path="/admin/consumers/gift-payments/:consumer_id"
+            render={props => <ConsumerGiftPayment {...props} />}
           />
           <Route
             exact
