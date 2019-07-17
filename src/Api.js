@@ -77,6 +77,24 @@ export function createConsumerNote(req) {
     .then(json => json)
 }
 
+export function retrySendingGift(req) {
+  return POST({
+    api: "/Api/consumer/notes/create",
+    apiBase: "customer",
+    data: req
+  })
+    .then(json => json)
+}
+
+export function fetchConsumerGiftPayments(req) {
+  return POST({
+    api: "/Api/consumer/notes/create",
+    apiBase: "customer",
+    data: req
+  })
+    .then(json => json)
+}
+
 export function fetchNoteIssues() {
   return GET({
     api: "/Api/consumer/notes/list/issues",
