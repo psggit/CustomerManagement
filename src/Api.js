@@ -86,9 +86,9 @@ export function retrySendingGift(req) {
     .then(json => json)
 }
 
-export function fetchConsumerGiftPayments(req) {
+export function fetchGiftTransactions(req) {
   return POST({
-    api: "/Api/consumer/notes/create",
+    api: `/Api/consumer/payment/detail/gift/${req.consumer_id}`,
     apiBase: "customer",
     data: req
   })
