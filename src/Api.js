@@ -77,10 +77,10 @@ export function createConsumerNote(req) {
     .then(json => json)
 }
 
-export function retrySendingGift(req) {
+export function retrySendGift(req) {
   return POST({
-    api: "/Api/consumer/notes/create",
-    apiBase: "customer",
+    api: "/admin/payment/gift/retry",
+    apiBase: "orderman",
     data: req
   })
     .then(json => json)

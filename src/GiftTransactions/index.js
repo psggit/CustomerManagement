@@ -5,12 +5,13 @@ import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "Utils/helpers"
 import Moment from "moment"
 import Button from "Components/Button"
-import { fetchGiftTransactions, retrySendingGift } from "./../Api"
+import { fetchGiftTransactions, retrySendGift } from "../Api"
 
 export default function ConsumerGiftPayment(props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const limit = 20
   const consumer_id = parseInt(location.pathname.split("/").pop())
+  const [txnid, setTxnId] = useState()
   const [giftTransactions, setGiftTransactions] = useState([])
   const [giftTransactionCount, setGiftTransactionCount] = useState(0)
   const [isLoaded, setLoadingState] = useState(false)
@@ -48,6 +49,7 @@ export default function ConsumerGiftPayment(props) {
         ? <Button
           onClick={(e) => retrySendingConsumerGift(e, item)}
           appearance="primary"
+          disabled={txnid === item.transaction_id && retrySendGift ? retrySendingGift : false}
         >
           Retry
           </Button>
@@ -55,13 +57,13 @@ export default function ConsumerGiftPayment(props) {
     }
   ]
 
-  function retrySendingConsumerGift(e, item) {
+  const retrySendingConsumerGift = (e, item) => {
+    setTxnId(item.transaction_id)
     const payload = {
-      transaction_id: item.transaction_id,
-      consumer_id: consumer_id
+      txnid: item.transaction_id
     }
     setRetrySendingGift(true)
-    retrySendingGift(payload)
+    retrySendGift(payload)
       .then(response => {
         setRetrySendingGift(false)
         location.reload()
