@@ -33,6 +33,10 @@ export default function ConsumerGiftPayment(props) {
       mapping: "gift_status"
     },
     {
+      name: "Gift Type",
+      mapping: "gift_type"
+    },
+    {
       name: "Payment Status",
       mapping: "payment_status"
     },
