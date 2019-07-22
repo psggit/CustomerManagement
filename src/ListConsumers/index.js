@@ -118,6 +118,7 @@ export default function ListConsumers(props) {
       <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>,
       <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>,
       item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink> : "",
+      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-payments/${item.consumer_id}`}>Gift transactions</NavLink> : "",
       item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : "",
       item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : ""
     ]

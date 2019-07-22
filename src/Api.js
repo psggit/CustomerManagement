@@ -2,8 +2,8 @@ import { POST, GET } from "Utils/fetch";
 
 export function authLogin(req) {
   return POST({
-    api: "/login",
-    apiBase: "auth",
+    api: "/auth/login",
+    apiBase: "gremlin",
     type: "Public",
     data: req
   })
@@ -71,6 +71,24 @@ export function fetchConsumerNotes(req) {
 export function createConsumerNote(req) {
   return POST({
     api: "/Api/consumer/notes/create",
+    apiBase: "customer",
+    data: req
+  })
+    .then(json => json)
+}
+
+export function retrySendGift(req) {
+  return POST({
+    api: "/admin/payment/gift/retry",
+    apiBase: "orderman",
+    data: req
+  })
+    .then(json => json)
+}
+
+export function fetchGiftTransactions(req) {
+  return POST({
+    api: `/Api/consumer/payment/detail/gift/${req.consumer_id}`,
     apiBase: "customer",
     data: req
   })
