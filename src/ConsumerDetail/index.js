@@ -21,7 +21,7 @@ export default function ConsumerDetail() {
       consumer_id,
       name,
       gender,
-      dob
+      dob: new Date(dob).toISOString()
     }
     updateConsumer(updateConsumerReq)
       .then(updateConsumerRes => {
