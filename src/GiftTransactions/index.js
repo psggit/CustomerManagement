@@ -64,7 +64,7 @@ export default function ConsumerGiftPayment(props) {
   const retrySendingConsumerGift = (e, item) => {
     setTxnId(item.transaction_id)
     const payload = {
-      txnid: item.transaction_id
+      txn_id: item.transaction_id
     }
     setRetrySendingGift(true)
     retrySendGift(payload)
