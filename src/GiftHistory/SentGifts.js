@@ -88,6 +88,7 @@ function handleCancelGiftCard(card_number, consumer_id) {
     .then(json => {
       alert(json.message)
       unmountModal()
+      location.reload()
     })
     .catch(err => {
       err.response.json().then(json => {
