@@ -1,6 +1,7 @@
 const express = require("express")
 const path = require("path")
 const app = express()
+const fs = require("fs")
 const helmet = require("helmet")
 const task = require("./task")
 
@@ -28,7 +29,14 @@ app.use("/admin", express.static(path.join(__dirname, "./../dist")))
 
 app.get("/*", (req, res) => {
   //task.setEnv()
-  res.sendFile(path.resolve(__dirname, "./../dist/index.html"))
+  const file = fs.readFileSync(path.resolve(__dirname, "./../dist/index.html"), "utf-8")
+  const newFile = file.split("{script}").join(`
+    <script>
+      window.BASE_URL = ${process.env.BASE_URL} || 'basketball38.hasura-app.io'
+    </script>
+  `)
+  console.log("new file", newFile)
+  res.send(newFile)
 })
 
 app.listen(8080, () => {
