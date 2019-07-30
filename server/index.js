@@ -32,7 +32,7 @@ app.get("/*", (req, res) => {
   const file = fs.readFileSync(path.resolve(__dirname, "./../dist/index.html"), "utf-8")
   const newFile = file.split("{script}").join(`
     <script>
-      window.BASE_URL = ${process.env.BASE_URL} || 'basketball38.hasura-app.io'
+      window.BASE_URL = "${process.env.BASE_URL}" || 'basketball38.hasura-app.io'
     </script>
   `)
   console.log("new file", newFile)
