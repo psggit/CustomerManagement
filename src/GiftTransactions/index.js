@@ -29,16 +29,16 @@ export default function ConsumerGiftPayment(props) {
       mapping: "amount"
     },
     {
+      name: "Payment Status",
+      mapping: "payment_status"
+    },
+    {
       name: "Gift Status",
       mapping: "gift_status"
     },
     {
       name: "Gift Type",
       mapping: "gift_type"
-    },
-    {
-      name: "Payment Status",
-      mapping: "payment_status"
     },
     {
       name: "Created At",
