@@ -7,6 +7,7 @@ import { fetchSentGifts, cancelGiftCard } from "../Api"
 import Button from "Components/Button"
 import { mountModal, unmountModal } from "Components/ModalBox/api"
 import ConfirmModal from "Components/ModalBox/ConfirmModal"
+import Moment from "moment"
 
 const tableColumns = [
   {
@@ -24,6 +25,11 @@ const tableColumns = [
   {
     name: "Brand name",
     mapping: "brand_name"
+  },
+  {
+    name: "Sent on",
+    mapping: "created_at",
+    fn: created_at => Moment(created_at).format("DD-MM-YYYY h:mm:ss A")
   },
   {
     name: "Expiry date",

@@ -5,6 +5,7 @@ import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "Utils/helpers"
 import { fetchReceivedGifts } from "../Api"
 import Button from "Components/Button"
+import Moment from "moment"
 
 const tableColumns = [
   {
@@ -35,6 +36,16 @@ const tableColumns = [
   {
     name: "Receiver mobile",
     mapping: "receiver_mobile"
+  },
+  {
+    name: "Received on",
+    mapping: "gift_received_on",
+    fn: gift_received_on => Moment(gift_received_on).format("DD-MM-YYYY h:mm:ss A")
+  },
+  {
+    name: "Redeemed on",
+    mapping: "gift_redeemed_on",
+    fn: gift_redeemed_on => gift_redeemed_on ? Moment(gift_redeemed_on).format("DD-MM-YYYY h:mm:ss A") : ""
   },
   {
     name: "Is redeemed",
