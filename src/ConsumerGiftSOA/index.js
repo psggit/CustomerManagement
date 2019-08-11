@@ -57,7 +57,7 @@ export default function ConsumerGiftSOA() {
   }, [])
   return (
     <div>
-      <PageHeading>Consumer Gift SOA ({consumer_phone})</PageHeading>
+      <PageHeading>Consumer Gift Credit ({consumer_phone})</PageHeading>
       <Table
         data={consumersSOAs}
         columns={tableColumns}
