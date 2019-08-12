@@ -10,4 +10,4 @@ function setEnv() {
   fs.writeFileSync(path.join(__dirname + "./../package.json"), JSON.stringify(pkg, null, 2))
 }
 
-setEnv()
+//setEnv()
