@@ -28,17 +28,21 @@ app.get("*.js", (req, res, next) => {
 app.use("/admin", express.static(path.join(__dirname, "./../dist")))
 
 app.get("/*", (req, res) => {
-  //task.setEnv()
-  console.log("base", process.env)
-  const file = fs.readFileSync(path.resolve(__dirname, "./../dist/index.html"), "utf-8")
-  const newFile = file.split("{script}").join(`
-    <script>
-      window.BASE_URL = ${ process.env.BASE_URL}
-    </script>
-  `)
-  console.log("new file", newFile)
-  res.send(newFile)
+  res.sendFile(path.resolve(__dirname, "./../dist/index.html"))
 })
+
+// app.get("/*", (req, res) => {
+//   //task.setEnv()
+//   console.log("base", process.env)
+//   const file = fs.readFileSync(path.resolve(__dirname, "./../dist/index.html"), "utf-8")
+//   const newFile = file.split("{script}").join(`
+//     <script>
+//       window.BASE_URL = ${ process.env.BASE_URL}
+//     </script>
+//   `)
+//   console.log("new file", newFile)
+//   res.send(newFile)
+// })
 
 app.listen(8080, () => {
   // task.setEnv()
