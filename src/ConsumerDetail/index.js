@@ -29,6 +29,7 @@ export default function ConsumerDetail() {
       })
       .catch(err => {
         console.log(err)
+        err.response.json().then(json => { alert(json.message) })
         setIsUpdating(false)
       })
   }
