@@ -95,7 +95,7 @@ export default function ConsumerDetail() {
 
           <FormGroup inline>
             <label>DOB</label>
-            <Input onChange={(e) => { setDOB(e.target.value) }} value={dob.slice(0, 10)} />
+            <Input type="date" onChange={(e) => { setDOB(e.target.value) }} value={dob.slice(0, 10)} />
           </FormGroup>
 
           <FormGroup inline>
