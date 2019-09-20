@@ -14,11 +14,11 @@ const tableColumns = [
     mapping: "TransactionType"
   },
   {
-    name: "Debit",
+    name: "Transaction Amount",
     mapping: "Amount"
   },
   {
-    name: "Credit",
+    name: "Closing Balance",
     mapping: "Balance"
   },
   {
@@ -26,7 +26,7 @@ const tableColumns = [
     mapping: "CardNumber"
   },
   {
-    name: "Closing Balance",
+    name: "Card Value",
     mapping: "CardAmount"
   },
   {
@@ -34,6 +34,7 @@ const tableColumns = [
     mapping: "ResponseMessage"
   }
 ]
+
 
 export default function ConsumerGiftSOA() {
   const limit = 20
