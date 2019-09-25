@@ -34,7 +34,7 @@ const tableColumns = [
   }
 ]
 
-export default function ConsumerSOA(props) {
+export default function ConsumerSOA (props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const limit = 20
   const consumer_id = parseInt(location.pathname.split("/").pop())

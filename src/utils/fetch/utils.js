@@ -67,7 +67,7 @@ export function checkStatus(response) {
  * constructFetchUtility - return a window.fetch instance
  * @param {Object} options
  */
-export function constructFetchUtility(options) {
+export function constructFetchUtility (options) {
 
   const { api, data, method, type, prependBaseUrl = true, apiBase } = options
   // construct request url
@@ -90,6 +90,6 @@ export function constructFetchUtility(options) {
     .then(parseJSON)
 }
 
-function parseJSON(response) {
+function parseJSON (response) {
   return response.json()
 }

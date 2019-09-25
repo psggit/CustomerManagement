@@ -18,7 +18,7 @@ import Icon from "Components/Icon"
 import { unmountTableActionsMenu } from "../components/Table/utils";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 
-export default function ListConsumers(props) {
+export default function ListConsumers (props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const searchValue = getQueryParamByName("q") || ""
   const filterByValue = getQueryParamByName("f") || "0"
@@ -53,7 +53,7 @@ export default function ListConsumers(props) {
 
   useEffect(() => {
     document.addEventListener("click", unmountTableActionsMenu)
-    return function cleanup() {
+    return function cleanup () {
       document.removeEventListener("click", unmountTableActionsMenu)
     }
   }, [])
@@ -113,7 +113,7 @@ export default function ListConsumers(props) {
   }, [activeOffset, finalFilterValue])
 
 
-  function renderActionsMenu(e, item) {
+  function renderActionsMenu (e, item) {
     const actionItems = [
       <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>,
       <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>,

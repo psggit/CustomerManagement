@@ -71,7 +71,7 @@ const tableColumns = [
   }
 ]
 
-function getCardStatus(item) {
+function getCardStatus (item) {
   if (item.is_card_redeemed) {
     return "REDEEMED"
   } else if (item.is_card_cancelled) {
@@ -83,7 +83,7 @@ function getCardStatus(item) {
   }
 }
 
-export default function ReceivedGifts(props) {
+export default function ReceivedGifts (props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const limit = 20
   const consumer_phone = location.pathname.split("/").pop()

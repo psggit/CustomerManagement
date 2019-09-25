@@ -6,7 +6,7 @@ import { Form, FormGroup } from "Components/Form"
 import Button from "Components/Button"
 import Moment from "moment"
 
-export default function ConsumerDetail() {
+export default function ConsumerDetail () {
   const consumer_id = parseInt(location.pathname.split("/").pop())
   const [consumerDetail, setConsumerDetail] = useState(null)
   const [name, setName] = useState("")

@@ -7,7 +7,7 @@ import Moment from "moment"
 import Button from "Components/Button"
 import { fetchGiftTransactions, retrySendGift } from "../Api"
 
-export default function ConsumerGiftPayment(props) {
+export default function ConsumerGiftPayment (props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const limit = 20
   const consumer_id = parseInt(location.pathname.split("/").pop())

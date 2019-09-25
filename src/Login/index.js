@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Form, FormGroup } from "Components/Form"
 import Input from "Components/Input"
 import Button from "Components/Button"
-import { authLogin, authTokenInfo } from "../Api"
+import { authLogin} from "../Api"
 import { createSession } from "Utils/session"
 import "./login.scss"
 
-export default function Login(props) {
+export default function Login (props) {
   const [userName, setUserName] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setLoadingState] = useState(false)

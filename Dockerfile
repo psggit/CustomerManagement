@@ -1,4 +1,4 @@
-FROM node:10.14.1
+FROM node:10.16.0
 
 RUN mkdir -p /app
 WORKDIR /app
@@ -8,7 +8,7 @@ RUN yarn install
 
 COPY ./ /app
 
-RUN yarn run build
+RUN yarn run build-prod
 
 # ENV NODE_PATH /app/node_modules/
 # ENV NODE_PATH /usr/lib/node_modules/

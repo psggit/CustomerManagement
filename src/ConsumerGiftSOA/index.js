@@ -35,8 +35,7 @@ const tableColumns = [
   }
 ]
 
-
-export default function ConsumerGiftSOA() {
+export default function ConsumerGiftSOA () {
   const limit = 20
   const consumer_phone = location.pathname.split("/").pop()
   const [consumersSOAs, setConsumerSOAs] = useState([])

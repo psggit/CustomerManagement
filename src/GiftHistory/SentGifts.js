@@ -56,7 +56,7 @@ const tableColumns = [
       item.is_card_redeemed || item.is_card_cancelled
         ? getCardStatus(item)
         : (
-          <Button
+        <Button
             appearance="secondary"
             onClick={() => {
               mountModal(ConfirmModal({
@@ -72,7 +72,7 @@ const tableColumns = [
   }
 ]
 
-function getCardStatus(item) {
+function getCardStatus (item) {
   if (item.is_card_redeemed) {
     return "REDEEMED"
   } else if (item.is_card_cancelled) {
@@ -85,7 +85,7 @@ function getCardStatus(item) {
 }
 
 
-function handleCancelGiftCard(card_number, consumer_id) {
+function handleCancelGiftCard (card_number, consumer_id) {
   const cancelGiftCardReq = {
     card_number,
     consumer_id
@@ -104,7 +104,7 @@ function handleCancelGiftCard(card_number, consumer_id) {
     })
 }
 
-export default function SentGifts(props) {
+export default function SentGifts (props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const limit = 20
   const consumer_phone = location.pathname.split("/").pop()

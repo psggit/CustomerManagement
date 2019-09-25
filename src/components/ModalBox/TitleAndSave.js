@@ -4,7 +4,7 @@ import Button from "Components/Button"
 import { unmountModal } from "Components/ModalBox/api"
 import "./TitleAndSave.scss"
 
-export default function TitleAndSave({ title, children, handleSave }) {
+export default function TitleAndSave ({ title, children, handleSave }) {
   return (
     <div id="title-and-save">
       <ModalBox>

@@ -1,7 +1,7 @@
 import React from "react"
 import "./input.scss"
 
-export default function Input(props) {
+export default function Input (props) {
   return (
     <input
       style={{ width: props.width }}
