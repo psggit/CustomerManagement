@@ -5,6 +5,7 @@ import Pagination from "react-js-pagination"
 import { getOffsetUsingPageNo, getQueryParamByName, getQueryUri } from "Utils/helpers"
 import { fetchReceivedGifts } from "../Api"
 import Button from "Components/Button"
+import Moment from "moment"
 
 const tableColumns = [
   {
@@ -37,6 +38,16 @@ const tableColumns = [
     mapping: "receiver_mobile"
   },
   {
+    name: "Received on",
+    mapping: "gift_received_on",
+    fn: gift_received_on => Moment(gift_received_on).format("DD-MM-YYYY h:mm:ss A")
+  },
+  {
+    name: "Redeemed on",
+    mapping: "gift_redeemed_on",
+    fn: gift_redeemed_on => gift_redeemed_on ? Moment(gift_redeemed_on).format("DD-MM-YYYY h:mm:ss A") : ""
+  },
+  {
     name: "Is redeemed",
     mapping: "is_card_redeemed",
     fn: is_card_redeemed => is_card_redeemed ? "Yes" : "No"
@@ -60,7 +71,7 @@ const tableColumns = [
   }
 ]
 
-function getCardStatus(item) {
+function getCardStatus (item) {
   if (item.is_card_redeemed) {
     return "REDEEMED"
   } else if (item.is_card_cancelled) {
@@ -72,7 +83,7 @@ function getCardStatus(item) {
   }
 }
 
-export default function ReceivedGifts(props) {
+export default function ReceivedGifts (props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const limit = 20
   const consumer_phone = location.pathname.split("/").pop()

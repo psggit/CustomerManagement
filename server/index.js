@@ -1,7 +1,9 @@
 const express = require("express")
 const path = require("path")
 const app = express()
+const fs = require("fs")
 const helmet = require("helmet")
+// const task = require("./task")
 
 app.use(helmet({
   frameguard: "deny"
@@ -29,6 +31,20 @@ app.get("/*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./../dist/index.html"))
 })
 
+// app.get("/*", (req, res) => {
+//   //task.setEnv()
+//   console.log("base", process.env)
+//   const file = fs.readFileSync(path.resolve(__dirname, "./../dist/index.html"), "utf-8")
+//   const newFile = file.split("{script}").join(`
+//     <script>
+//       window.BASE_URL = ${ process.env.BASE_URL}
+//     </script>
+//   `)
+//   console.log("new file", newFile)
+//   res.send(newFile)
+// })
+
 app.listen(8080, () => {
-  console.log("Server is listening on port 8080")
+  // task.setEnv()
+  console.log("Server is listening on the port 8080")
 })

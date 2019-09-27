@@ -1,7 +1,7 @@
 import React from "react"
 import "./button.scss"
 
-function getClassName(size = 36, appearance) {
+function getClassName (size = 36, appearance) {
   let className
   if (appearance === "primary") {
     className = "btn--primary"
@@ -15,7 +15,7 @@ function getClassName(size = 36, appearance) {
   return className
 }
 
-export default function Button({ onClick, disabled, children, width, size, appearance }) {
+export default function Button ({ onClick, disabled, children, width, size, appearance }) {
   return (
     <button
       style={{ width }}

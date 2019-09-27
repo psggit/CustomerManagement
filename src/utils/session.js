@@ -1,8 +1,8 @@
-export function clearSession() {
+export function clearSession () {
   localStorage.removeItem("__hipbarU__")
 }
 
-export function createSession(user) {
+export function createSession (user) {
   const __hipbarU__ = {
     hasura_id: user.hasura_id,
     hasura_role: getHasuraRole(user.hasura_roles)
@@ -11,11 +11,11 @@ export function createSession(user) {
   localStorage.setItem("__hipbarU__", JSON.stringify(__hipbarU__))
 }
 
-export function getSession() {
+export function getSession () {
   return JSON.parse(localStorage.getItem("__hipbarU__"))
 }
 
-export function getHasuraRole(hasuraRoles) {
+export function getHasuraRole (hasuraRoles) {
   const rolesMap = {
     admin: 8,
     opdataadmin: 7,

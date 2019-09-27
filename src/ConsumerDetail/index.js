@@ -6,7 +6,7 @@ import { Form, FormGroup } from "Components/Form"
 import Button from "Components/Button"
 import Moment from "moment"
 
-export default function ConsumerDetail() {
+export default function ConsumerDetail () {
   const consumer_id = parseInt(location.pathname.split("/").pop())
   const [consumerDetail, setConsumerDetail] = useState(null)
   const [name, setName] = useState("")
@@ -29,6 +29,7 @@ export default function ConsumerDetail() {
       })
       .catch(err => {
         console.log(err)
+        err.response.json().then(json => { alert(json.message) })
         setIsUpdating(false)
       })
   }
@@ -94,7 +95,7 @@ export default function ConsumerDetail() {
 
           <FormGroup inline>
             <label>DOB</label>
-            <Input onChange={(e) => { setDOB(e.target.value) }} value={dob.slice(0, 10)} />
+            <Input type="date" onChange={(e) => { setDOB(e.target.value) }} value={dob.slice(0, 10)} />
           </FormGroup>
 
           <FormGroup inline>

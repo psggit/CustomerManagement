@@ -1,6 +1,6 @@
 import { POST, GET } from "Utils/fetch";
 
-export function authLogin(req) {
+export function authLogin (req) {
   return POST({
     api: "/auth/login",
     apiBase: "gremlin",
@@ -9,7 +9,7 @@ export function authLogin(req) {
   })
 }
 
-export function authLogout(req) {
+export function authLogout (req) {
   return GET({
     api: "/user/logout",
     apiBase: "auth",
@@ -17,7 +17,7 @@ export function authLogout(req) {
   })
 }
 
-export function authTokenInfo(req) {
+export function authTokenInfo (req) {
   return GET({
     api: "/user/account/info",
     apiBase: "auth",
@@ -25,7 +25,7 @@ export function authTokenInfo(req) {
   })
 }
 
-export function fetchConsumers(req) {
+export function fetchConsumers (req) {
   return POST({
     api: "/Api/consumer/list",
     apiBase: "customer",
@@ -34,7 +34,7 @@ export function fetchConsumers(req) {
     .then(json => json);
 }
 
-export function updateConsumer(req) {
+export function updateConsumer (req) {
   return POST({
     api: "/Api/consumer/update",
     apiBase: "customer",
@@ -43,7 +43,7 @@ export function updateConsumer(req) {
     .then(json => json)
 }
 
-export function fetchConsumerDetail(req) {
+export function fetchConsumerDetail (req) {
   return GET({
     api: `/Api/consumer/details/${req.consumer_id}`,
     apiBase: "customer"
@@ -51,7 +51,7 @@ export function fetchConsumerDetail(req) {
     .then(json => json)
 }
 
-export function fetchConsumerSOA(req) {
+export function fetchConsumerSOA (req) {
   return POST({
     api: `/Api/consumer/soa/list/${req.consumer_id}`,
     apiBase: "customer",
@@ -59,7 +59,7 @@ export function fetchConsumerSOA(req) {
   })
 }
 
-export function fetchConsumerNotes(req) {
+export function fetchConsumerNotes (req) {
   return POST({
     api: `/Api/consumer/notes/list/${req.consumer_id}`,
     apiBase: "customer",
@@ -68,7 +68,7 @@ export function fetchConsumerNotes(req) {
     .then(json => json)
 }
 
-export function createConsumerNote(req) {
+export function createConsumerNote (req) {
   return POST({
     api: "/Api/consumer/notes/create",
     apiBase: "customer",
@@ -77,7 +77,7 @@ export function createConsumerNote(req) {
     .then(json => json)
 }
 
-export function retrySendGift(req) {
+export function retrySendGift (req) {
   return POST({
     api: "/admin/payment/gift/retry",
     apiBase: "orderman",
@@ -86,7 +86,7 @@ export function retrySendGift(req) {
     .then(json => json)
 }
 
-export function fetchGiftTransactions(req) {
+export function fetchGiftTransactions (req) {
   return POST({
     api: `/Api/consumer/payment/detail/gift/${req.consumer_id}`,
     apiBase: "customer",
@@ -95,7 +95,7 @@ export function fetchGiftTransactions(req) {
     .then(json => json)
 }
 
-export function fetchNoteIssues() {
+export function fetchNoteIssues () {
   return GET({
     api: "/Api/consumer/notes/list/issues",
     apiBase: "customer"
@@ -103,7 +103,7 @@ export function fetchNoteIssues() {
     .then(json => json)
 }
 
-export function fetchConsumerGiftSOA(req) {
+export function fetchConsumerGiftSOA (req) {
   return GET({
     api: `/admin/gifting/history/${req.consumer_phone}`,
     apiBase: "orderman"
@@ -116,7 +116,7 @@ export function fetchConsumerGiftSOA(req) {
     })
 }
 
-export function fetchSentGifts(req) {
+export function fetchSentGifts (req) {
   return POST({
     api: "/gifting/sentGift",
     apiBase: "gremlin",
@@ -125,7 +125,7 @@ export function fetchSentGifts(req) {
     .then(json => json)
 }
 
-export function fetchReceivedGifts(req) {
+export function fetchReceivedGifts (req) {
   return POST({
     api: "/gifting/receivedGift",
     apiBase: "gremlin",
@@ -134,7 +134,7 @@ export function fetchReceivedGifts(req) {
     .then(json => json)
 }
 
-export function cancelGiftCard(req) {
+export function cancelGiftCard (req) {
   return POST({
     api: "/support/gift/cancelgiftcard",
     apiBase: "orderman",
@@ -143,7 +143,7 @@ export function cancelGiftCard(req) {
     .then(json => json)
 }
 
-export function convertToCredit(req) {
+export function convertToCredit (req) {
   return POST({
     api: "/support/gift/convert_to_credits",
     apiBase: "orderman",

@@ -28,7 +28,7 @@ const tableColumns = [
   }
 ]
 
-export default function ConsumerNotes(props) {
+export default function ConsumerNotes (props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const consumer_id = parseInt(location.pathname.split("/").pop())
   const limit = 50

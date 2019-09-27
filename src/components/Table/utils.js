@@ -2,11 +2,11 @@ import React from "react"
 import { unmountComponentAtNode, render } from "react-dom"
 import "./table.scss"
 import { Router } from "react-router"
-import { createBrowserHistory } from "history"
+import { createBrowserHistory as createHistory } from 'history'
 
-const history = createBrowserHistory()
+const history = createHistory()
 
-export function mountTableActionsMenu(position, actionItems, history) {
+export function mountTableActionsMenu (position, actionItems, history) {
   const style = {
     position: "absolute",
     top: position.top + 10,
@@ -20,7 +20,7 @@ export function mountTableActionsMenu(position, actionItems, history) {
   render(<Router history={history}>{ActionMenu}</Router>, document.getElementById("fixed--position-el"))
 }
 
-export function unmountTableActionsMenu(e) {
+export function unmountTableActionsMenu (e) {
   if (e.target.parentNode.className !== "table--action-menu") {
     unmountComponentAtNode(document.getElementById("fixed--position-el"))
   }

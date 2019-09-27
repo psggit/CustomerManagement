@@ -12,7 +12,7 @@ const items = [
   // { label: "Create Note", href: "/consumer/notes/create" }
 ]
 
-function SideMenu() {
+function SideMenu () {
   const active = location.pathname
   return (
     <div className="sidenav">

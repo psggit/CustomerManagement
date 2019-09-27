@@ -18,7 +18,7 @@ import Icon from "Components/Icon"
 import { unmountTableActionsMenu } from "../components/Table/utils";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 
-export default function ListConsumers(props) {
+export default function ListConsumers (props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const searchValue = getQueryParamByName("q") || ""
   const filterByValue = getQueryParamByName("f") || "0"
@@ -53,7 +53,7 @@ export default function ListConsumers(props) {
 
   useEffect(() => {
     document.addEventListener("click", unmountTableActionsMenu)
-    return function cleanup() {
+    return function cleanup () {
       document.removeEventListener("click", unmountTableActionsMenu)
     }
   }, [])
@@ -113,11 +113,11 @@ export default function ListConsumers(props) {
   }, [activeOffset, finalFilterValue])
 
 
-  function renderActionsMenu(e, item) {
+  function renderActionsMenu (e, item) {
     const actionItems = [
       <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>,
       <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>,
-      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift SOA</NavLink> : "",
+      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift Credit</NavLink> : "",
       item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-payments/${item.consumer_id}`}>Gift transactions</NavLink> : "",
       item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : "",
       item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : ""

@@ -7,7 +7,7 @@ import Moment from "moment"
 import Button from "Components/Button"
 import { fetchGiftTransactions, retrySendGift } from "../Api"
 
-export default function ConsumerGiftPayment(props) {
+export default function ConsumerGiftPayment (props) {
   const pageNo = parseInt(getQueryParamByName("page")) || 1
   const limit = 20
   const consumer_id = parseInt(location.pathname.split("/").pop())
@@ -29,16 +29,16 @@ export default function ConsumerGiftPayment(props) {
       mapping: "amount"
     },
     {
+      name: "Payment Status",
+      mapping: "payment_status"
+    },
+    {
       name: "Gift Status",
       mapping: "gift_status"
     },
     {
       name: "Gift Type",
       mapping: "gift_type"
-    },
-    {
-      name: "Payment Status",
-      mapping: "payment_status"
     },
     {
       name: "Created At",

@@ -14,11 +14,11 @@ const tableColumns = [
     mapping: "TransactionType"
   },
   {
-    name: "Debit",
+    name: "Transaction Amount",
     mapping: "Amount"
   },
   {
-    name: "Credit",
+    name: "Closing Balance",
     mapping: "Balance"
   },
   {
@@ -26,7 +26,7 @@ const tableColumns = [
     mapping: "CardNumber"
   },
   {
-    name: "Closing Balance",
+    name: "Card Value",
     mapping: "CardAmount"
   },
   {
@@ -35,7 +35,7 @@ const tableColumns = [
   }
 ]
 
-export default function ConsumerGiftSOA() {
+export default function ConsumerGiftSOA () {
   const limit = 20
   const consumer_phone = location.pathname.split("/").pop()
   const [consumersSOAs, setConsumerSOAs] = useState([])
@@ -57,7 +57,7 @@ export default function ConsumerGiftSOA() {
   }, [])
   return (
     <div>
-      <PageHeading>Consumer Gift SOA ({consumer_phone})</PageHeading>
+      <PageHeading>Consumer Gift Credit ({consumer_phone})</PageHeading>
       <Table
         data={consumersSOAs}
         columns={tableColumns}

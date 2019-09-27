@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import TitleAndSave from "Components/ModalBox/TitleAndSave"
 import "./CreateNoteModal.scss"
 import { fetchNoteIssues, createConsumerNote } from "../Api";
 import { unmountModal } from "Components/ModalBox/api"
 
-export default function CreateNoteModal({ consumer_id }) {
+export default function CreateNoteModal ({ consumer_id }) {
   return class CreateNoteModal extends React.Component {
-    constructor() {
+    constructor () {
       super()
       const consumer_id = parseInt(location.pathname.split("/").pop())
       this.state = {
@@ -19,7 +19,8 @@ export default function CreateNoteModal({ consumer_id }) {
       this.setNoteIssues = this.setNoteIssues.bind(this)
       this.setIssueId = this.setIssueId.bind(this)
     }
-    handleSave() {
+
+    handleSave () {
       const { consumer_id, issueId, noteDescription } = this.state
       const createConsumerNoteReq = {
         consumer_id,
@@ -38,23 +39,28 @@ export default function CreateNoteModal({ consumer_id }) {
           })
       }
     }
-    setNoteIssues(noteIssues) {
+
+    setNoteIssues (noteIssues) {
       this.setState({ noteIssues })
     }
-    setIssueId(issueId) {
+
+    setIssueId (issueId) {
       this.setState({ issueId })
     }
-    setNoteDescription(noteDescription) {
+
+    setNoteDescription (noteDescription) {
       this.setState({ noteDescription })
     }
-    componentDidMount() {
+
+    componentDidMount () {
       fetchNoteIssues()
         .then(fetchNoteIssuesRes => {
           this.setNoteIssues(fetchNoteIssuesRes.issue)
           this.setIssueId(fetchNoteIssuesRes.issue[0].id)
         })
     }
-    render() {
+
+    render () {
       return (
         <TitleAndSave title="Create Note" handleSave={this.handleSave}>
           <select onChange={(e) => { this.setIssueId(e.target.value) }}>

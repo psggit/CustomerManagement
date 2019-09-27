@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import "./header.scss"
 import { authLogout } from "../../Api";
 import { clearSession, getSession } from "Utils/session"
 import { NavLink } from "react-router-dom"
 
-export default function Header({ history }) {
+export default function Header ({ history }) {
   const session = getSession()
   const hasuraID = session ? session.hasura_id : null
 

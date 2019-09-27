@@ -1,7 +1,7 @@
 import React from "react"
 import "./table.scss"
 
-export default function Table({ data, columns, isLoaded }) {
+export default function Table ({ data, columns, isLoaded }) {
   const headers = columns.map((item, i) => <th key={`th-${i}`}>{item.name}</th>)
   return (
     <div className="table--container">

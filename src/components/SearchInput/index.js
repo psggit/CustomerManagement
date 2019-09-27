@@ -8,7 +8,7 @@ import Input from "./../Input"
 import Icon from "./../Icon"
 import "./SearchInput.scss"
 
-export default function SearchInput(props) {
+export default function SearchInput (props) {
   return (
     <div className="search--input">
       <Input
