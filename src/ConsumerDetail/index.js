@@ -26,7 +26,7 @@ export default function ConsumerDetail () {
     }
     updateConsumer(updateConsumerReq)
       .then(updateConsumerRes => {
-        alert("consumer updated")
+        alert("consumer updated..")
       })
       .catch(err => {
         console.log(err)
