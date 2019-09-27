@@ -21,7 +21,7 @@ export default function ConsumerDetail () {
       consumer_id,
       name,
       gender,
-      dob
+      dob: new Date(dob).toISOString()
     }
     updateConsumer(updateConsumerReq)
       .then(updateConsumerRes => {
@@ -43,7 +43,7 @@ export default function ConsumerDetail () {
         setConsumerDetail(fetchConsumerDetailRes.consumer)
         setGender(fetchConsumerDetailRes.consumer.gender)
         setName(fetchConsumerDetailRes.consumer.name)
-        setDOB(fetchConsumerDetailRes.consumer.dob)
+        setDOB(fetchConsumerDetailRes.consumer.dob.slice(0, 10))
       })
   }, [])
   return (
