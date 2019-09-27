@@ -21,7 +21,8 @@ export default function ConsumerDetail () {
       consumer_id,
       name,
       gender,
-      dob: new Date(dob).toISOString()
+      dob
+      //dob: new Date(dob).toISOString()
     }
     updateConsumer(updateConsumerReq)
       .then(updateConsumerRes => {
@@ -95,7 +96,7 @@ export default function ConsumerDetail () {
 
           <FormGroup inline>
             <label>DOB</label>
-            <Input type="date" onChange={(e) => { setDOB(e.target.value) }} value={dob.slice(0, 10)} />
+            <Input type="date" onChange={(e) => { console.log("date", e.target.value); setDOB(e.target.value) }} value={dob.slice(0, 10)} />
           </FormGroup>
 
           <FormGroup inline>
