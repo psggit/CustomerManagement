@@ -12,6 +12,7 @@ export default function ConsumerDetail () {
   const [name, setName] = useState("")
   const [gender, setGender] = useState("")
   const [dob, setDOB] = useState("")
+ //const [signupDate, setSignupDate] = useState("")
   const [isUpdating, setIsUpdating] = useState(false)
 
   const handleSubmit = (e) => {
@@ -41,10 +42,12 @@ export default function ConsumerDetail () {
     }
     fetchConsumerDetail(fetchConsumerDetailReq)
       .then(fetchConsumerDetailRes => {
+        console.log("data", fetchConsumerDetailRes)
         setConsumerDetail(fetchConsumerDetailRes.consumer)
         setGender(fetchConsumerDetailRes.consumer.gender)
         setName(fetchConsumerDetailRes.consumer.name)
         setDOB(fetchConsumerDetailRes.consumer.dob.slice(0, 10))
+        //setSignupDate(Moment(fetchConsumerDetailRes.consumer.signup_date).format("DD-MM-YYYY"))
       })
   }, [])
   return (
@@ -107,6 +110,12 @@ export default function ConsumerDetail () {
           <FormGroup inline>
             <label>Basic KYC Updated Date</label>
             <Input disabled defaultValue={consumerDetail.basic_kyc_date ? Moment(consumerDetail.basic_kyc_date).format("DD-MM-YYYY") : ""} />
+            {/* <Input disabled defaultValue={consumerDetail.is_kyc_updated ? "Updated" : "Not updated"} /> */}
+          </FormGroup>
+
+          <FormGroup inline>
+            <label>Signup Date</label>
+            <Input disabled defaultValue={consumerDetail.signup_date ? Moment(consumerDetail.signup_date).format("DD-MM-YYYY") : ""} />
             {/* <Input disabled defaultValue={consumerDetail.is_kyc_updated ? "Updated" : "Not updated"} /> */}
           </FormGroup>
 

@@ -162,7 +162,7 @@ export default function ListConsumers (props) {
     {
       name: "Signup date",
       mapping: "signup_date",
-      fn: signup_date => Moment(signup_date).format("DD-MM-YYYY h:mm:ss A")
+      fn: signup_date => Moment(signup_date).format("DD-MM-YYYY")
     },
     {
       name: null,
