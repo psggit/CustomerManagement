@@ -7,6 +7,7 @@ import SearchInput from "Components/SearchInput"
 import { Form } from "Components/Form"
 import PageHeading from "Components/PageHeading"
 import Pagination from "react-js-pagination"
+import Moment from "moment"
 import {
   getOffsetUsingPageNo,
   getQueryParamByName,
@@ -157,6 +158,11 @@ export default function ListConsumers (props) {
     {
       name: "Credits",
       mapping: "credits"
+    },
+    {
+      name: "Signup date",
+      mapping: "signup_date",
+      fn: signup_date => Moment(signup_date).format("DD-MM-YYYY h:mm:ss A")
     },
     {
       name: null,
