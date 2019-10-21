@@ -18,7 +18,7 @@ function getClassName (size = 36, appearance) {
 export default function Button ({ onClick, disabled, children, width, size, appearance }) {
   return (
     <button
-      style={{ width }}
+      style={{ width, marginRight: "10px" }}
       disabled={disabled}
       onClick={onClick}
       className={`btn ${getClassName(size, appearance)}`}>

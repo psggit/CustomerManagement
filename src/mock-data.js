@@ -27,3 +27,37 @@ export const consumerGiftPayments = {
   ],
   count: 100
 }
+
+export const consumerRewardsData = {
+  data: [
+    {
+      reward_id: 1,
+      reward_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "processed"
+    },
+    {
+      reward_id: 2,
+      reward_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "pending"
+    },
+    {
+      reward_id: 3,
+      reward_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "pending"
+    },
+    {
+      reward_id: 4,
+      reward_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "processed"
+    }
+  ],
+  count: 10
+}

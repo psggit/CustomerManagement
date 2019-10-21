@@ -116,12 +116,13 @@ export default function ListConsumers (props) {
 
   function renderActionsMenu (e, item) {
     const actionItems = [
-      <NavLink to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>,
-      <NavLink to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>,
-      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift Credit</NavLink> : "",
-      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/gift-payments/${item.consumer_id}`}>Gift transactions</NavLink> : "",
-      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : "",
-      item.gift_wallet_id !== 0 ? <NavLink to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : ""
+      <NavLink key="0" to={`/admin/consumers/soa/${item.consumer_id}`}>SOA</NavLink>,
+      <NavLink key="1" to={`/admin/consumers/notes/${item.consumer_id}`}>Notes</NavLink>,
+      item.gift_wallet_id !== 0 ? <NavLink key="2" to={`/admin/consumers/gift-soa/${item.mobile_number}`}>Gift Credit</NavLink> : "",
+      item.gift_wallet_id !== 0 ? <NavLink key="3" to={`/admin/consumers/gift-payments/${item.consumer_id}`}>Gift transactions</NavLink> : "",
+      item.gift_wallet_id !== 0 ? <NavLink key="4" to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : "",
+      item.gift_wallet_id !== 0 ? <NavLink key="5" to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : "",
+      <NavLink key="6" to={`/admin/consumers/rewards/${item.consumer_id}`}>Rewards</NavLink>
     ]
 
     const position = getPositionBasedOnContainer(e.target)
