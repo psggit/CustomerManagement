@@ -147,7 +147,7 @@ function Rewards (props) {
 }
 
 Rewards.propTypes = {
-  history: PropTypes.func
+  history: PropTypes.object
 }
 
 Rewards.displayName = "Rewards"
