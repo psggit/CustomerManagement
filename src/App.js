@@ -14,7 +14,6 @@ import GiftTransactions from "./GiftTransactions"
 import ConsumerGiftSOA from "./ConsumerGiftSOA"
 import SentGifts from "./GiftHistory/SentGifts"
 import ReceivedGifts from "./GiftHistory/ReceivedGifts"
-import Rewards from "./Rewards"
 import Login from "./Login"
 import { authTokenInfo } from "./Api"
 import { createSession } from "./utils/session"
@@ -101,11 +100,6 @@ function App() {
             exact
             path="/admin/consumers/received-gifts/:consumer_phone"
             render={props => <ReceivedGifts {...props} />}
-          />
-          <Route
-            exact
-            path="/admin/consumers/rewards/:consumer_id"
-            render={props => <Rewards {...props} />}
           />
         </Layout>
       </Switch>

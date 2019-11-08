@@ -34,15 +34,6 @@ export function fetchConsumers (req) {
     .then(json => json);
 }
 
-export function fetchConsumerRewards (req) {
-  return POST({
-    api: "/consumer/api/1/rewards/list",
-    apiBase: "customer",
-    data: req
-  })
-    .then(json => json);
-}
-
 export function updateConsumer (req) {
   return POST({
     api: "/Api/consumer/update",

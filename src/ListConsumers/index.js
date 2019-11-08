@@ -122,7 +122,6 @@ export default function ListConsumers (props) {
       item.gift_wallet_id !== 0 ? <NavLink key="3" to={`/admin/consumers/gift-payments/${item.consumer_id}`}>Gift transactions</NavLink> : "",
       item.gift_wallet_id !== 0 ? <NavLink key="4" to={`/admin/consumers/sent-gifts/${item.mobile_number}`}>Sent gifts</NavLink> : "",
       item.gift_wallet_id !== 0 ? <NavLink key="5" to={`/admin/consumers/received-gifts/${item.mobile_number}`}>Received gifts</NavLink> : "",
-      <NavLink key="6" to={`/admin/consumers/rewards/${item.consumer_id}`}>Rewards</NavLink>
     ]
 
     const position = getPositionBasedOnContainer(e.target)
