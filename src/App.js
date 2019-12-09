@@ -17,6 +17,7 @@ import ReceivedGifts from "./GiftHistory/ReceivedGifts"
 import Login from "./Login"
 import { authTokenInfo } from "./Api"
 import { createSession } from "./utils/session"
+import GiftCardValidityExtension from "./GiftCardValidityExtension"
 
 const history = createBrowserHistory()
 
@@ -65,6 +66,11 @@ function App() {
             exact
             path="/admin/consumers"
             render={props => <ListConsumers {...props} />}
+          />
+          <Route
+            exact
+            path="/admin/update-giftcard-expiry"
+            render={props => <GiftCardValidityExtension {...props} />}
           />
           <Route
             exact

@@ -43,6 +43,15 @@ export function updateConsumer (req) {
     .then(json => json)
 }
 
+export function updateExpiry (req) {
+  return POST({
+    api: "/support/gift/updateexpiry",
+    apiBase: "orderman",
+    data: req
+  })
+    .then(json => json)
+}
+
 export function fetchConsumerDetail (req) {
   return GET({
     api: `/Api/consumer/details/${req.consumer_id}`,
