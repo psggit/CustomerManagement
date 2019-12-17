@@ -54,7 +54,6 @@ export function checkStatus(response) {
 
   // return response
   else {
-    //console.log(response.statusText);
     var error = new Error(response.statusText)
     //console.log("res", response)
     //var error = new Error(response.error)
@@ -71,6 +70,7 @@ export function constructFetchUtility (options) {
 
   const { api, data, method, type, prependBaseUrl = true, apiBase } = options
   // construct request url
+  //console.log("url", process.env.BASE_URL)
   const url = prependBaseUrl ? `https://${apiBase}.${window.BASE_URL || process.env.BASE_URL}${api}` : api
 
   // construct options for creating `window.fetch` instance

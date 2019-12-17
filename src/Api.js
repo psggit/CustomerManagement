@@ -36,8 +36,17 @@ export function fetchConsumers (req) {
 
 export function updateConsumer (req) {
   return POST({
-    api: "/Api/consumer/update",
-    apiBase: "customer",
+    api: "/consumer/api/1/support/list/rewards",
+    apiBase: "api",
+    data: req
+  })
+    .then(json => json);
+}
+
+export function processReward (req) {
+  return POST({
+    api: "/support/portal/process_reward",
+    apiBase: "orderman",
     data: req
   })
     .then(json => json)
