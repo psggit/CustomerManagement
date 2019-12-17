@@ -52,6 +52,15 @@ export function processReward (req) {
     .then(json => json)
 }
 
+export function fetchConsumerRewards (req) {
+  return POST({
+    api: "/consumer/api/1/support/list/rewards",
+    apiBase: "api",
+    data: req
+  })
+    .then(json => json)
+}
+
 export function updateExpiry (req) {
   return POST({
     api: "/support/gift/updateexpiry",

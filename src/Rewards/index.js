@@ -102,9 +102,12 @@ function sendMoney (destination, rewardDetails) {
   }
   processReward(payload) 
     .then((response) => {
-      response.json().then(json => {
-        alert(json.message)
-      }, () => { location.reload()})
+      // response.json().then(json => {
+      alert(response.message)
+      // }, () => { })
+    })
+    .then(() => {
+      location.reload()
     })
     .catch((error) => {
       // eslint-disable-next-line no-console
@@ -139,7 +142,7 @@ function Rewards (props) {
       limit,
       offset: activeOffset
     }
-    
+
     fetchConsumerRewards(payload)
       .then(rewardResponse => {
         setConsumerRewardsCount(rewardResponse.count)
