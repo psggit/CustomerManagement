@@ -16,6 +16,7 @@ import SentGifts from "./GiftHistory/SentGifts"
 import ReceivedGifts from "./GiftHistory/ReceivedGifts"
 import Login from "./Login"
 import { authTokenInfo } from "./Api"
+import Rewards from "./Rewards"
 import { createSession } from "./utils/session"
 import GiftCardValidityExtension from "./GiftCardValidityExtension"
 
@@ -91,6 +92,11 @@ function App() {
             exact
             path="/admin/consumers/notes/:consumer_id"
             render={props => <ConsumerNotes {...props} />}
+          />
+          <Route
+            exact
+            path="/admin/consumers/rewards/:consumer_id"
+            render={props => <Rewards {...props} />}
           />
           <Route
             exact
