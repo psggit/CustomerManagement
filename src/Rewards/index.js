@@ -60,7 +60,7 @@ const tableColumns = [
           appearance="primary"
           // disabled={rewardId === item.reward_id ? isSendMoneyTriggered : false}
         >
-          Send to UPI linked bank account
+          UPI
         </Button>
         <Button
           // onClick={(e) => sendMoneyToWallet(e, item)}
@@ -74,7 +74,7 @@ const tableColumns = [
           appearance="primary"
           // disabled={rewardId === item.reward_id ? isSendMoneyTriggered : false}
         >
-          Send to Hipbar Wallet
+          Hipbar Wallet
         </Button>
         <Button
           // onClick={(e) => sendMoneyToWallet(e, item)}
@@ -88,7 +88,7 @@ const tableColumns = [
           appearance="primary"
           // disabled={rewardId === item.reward_id ? isSendMoneyTriggered : false}
         >
-          Send to Gift Wallet
+          Gift Wallet
         </Button>
       </div>
       : ""
