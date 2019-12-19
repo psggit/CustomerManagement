@@ -34,8 +34,8 @@ const tableColumns = [
   },
   {
     name: "Created At",
-    mapping: "created_at",
-    fn: processing_time => Moment(processing_time).format("DD-MM-YYYY h:mm:ss A")
+    mapping: "processed_time",
+    fn: processed_time => Moment(processed_time).format("DD-MM-YYYY h:mm:ss A")
   },
   {
     name: "Status",
