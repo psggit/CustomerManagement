@@ -58,7 +58,7 @@ const tableColumns = [
             }))
           }}
           appearance="primary"
-          // disabled={rewardId === item.reward_id ? isSendMoneyTriggered : false}
+          disabled={item.is_processing && item.is_retry ? true : false}
         >
           UPI
         </Button>
@@ -72,7 +72,7 @@ const tableColumns = [
             }))
           }}
           appearance="primary"
-          // disabled={rewardId === item.reward_id ? isSendMoneyTriggered : false}
+          disabled={item.is_processing && item.is_retry ? true : false}
         >
           Hipbar Wallet
         </Button>
@@ -86,7 +86,7 @@ const tableColumns = [
             }))
           }}
           appearance="primary"
-          // disabled={rewardId === item.reward_id ? isSendMoneyTriggered : false}
+          disabled={item.is_processing && item.is_retry ? true : false}
         >
           Gift Wallet
         </Button>
