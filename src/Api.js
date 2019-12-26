@@ -86,6 +86,14 @@ export function fetchConsumerSOA (req) {
   })
 }
 
+export function convertToCredits (payload) {
+  return POST({
+    api: `/support/gift/convert_to_credits`,
+    apiBase: "orderman",
+    data: payload
+  })
+}
+
 export function fetchConsumerNotes (req) {
   return POST({
     api: `/Api/consumer/notes/list/${req.consumer_id}`,
