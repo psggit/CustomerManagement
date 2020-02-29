@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 
 const items = [
   { label: "List Consumer", href: "/admin/consumers" },
-  { label: "Giftcard Expiry Extension", href: "/admin/update-giftcard-expiry" },
+  // { label: "Giftcard Expiry Extension", href: "/admin/update-giftcard-expiry" },
   // { label: "Consumer Detail", href: "/consumer/detail" },
   // { label: "Consuemr SOA", href:"/consumer/soa" },
   // { label: "Consumer Issues", href: "/consumer/issues" },

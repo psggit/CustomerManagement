@@ -29,6 +29,14 @@ const tableColumns = [
     mapping: "retailer_name"
   },
   {
+    name: "Reward Source",
+    mapping: "reward_source"
+  },
+  {
+    name: "Promocode",
+    mapping: "promo_code"
+  },
+  {
     name: "Bank RRN",
     mapping: "bank_rrn"
   },
