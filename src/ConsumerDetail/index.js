@@ -93,6 +93,11 @@ export default function ConsumerDetail () {
           </FormGroup>
 
           <FormGroup inline>
+            <label>Wallet Status</label>
+            <Input disabled defaultValue={consumerDetail.wallet_status} />
+          </FormGroup>
+
+          <FormGroup inline>
             <label>Phone</label>
             <Input disabled defaultValue={consumerDetail.mobile_number} />
           </FormGroup>
