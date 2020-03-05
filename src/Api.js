@@ -34,13 +34,13 @@ export function fetchConsumers (req) {
     .then(json => json);
 }
 
-export function updateConsumer (req) {
+export function updateConsumer(req) {
   return POST({
-    api: "/consumer/api/1/support/list/rewards",
-    apiBase: "api",
+    api: "/Api/consumer/update",
+    apiBase: "customer",
     data: req
   })
-    .then(json => json);
+    .then(json => json)
 }
 
 export function processReward (req) {
