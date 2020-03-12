@@ -41,6 +41,10 @@ const tableColumns = [
     mapping: "bank_rrn"
   },
   {
+    name: "Failure Reason",
+    mapping: "failure_reason"
+  },
+  {
     name: "Created At",
     mapping: "processed_time",
     fn: processed_time => Moment(processed_time).format("DD-MM-YYYY h:mm:ss A")
