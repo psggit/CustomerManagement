@@ -74,7 +74,7 @@ const tableColumns = [
         >
           UPI
         </Button>
-        <Button
+         {/* <Button
           // onClick={(e) => sendMoneyToWallet(e, item)}
           onClick={() => {
             mountModal(ConfirmModal({
@@ -87,7 +87,8 @@ const tableColumns = [
           disabled={item.is_processing && item.is_retry ? true : false}
         >
           Hipbar Wallet
-        </Button>
+        </Button> */}
+        {/* 
         <Button
           // onClick={(e) => sendMoneyToWallet(e, item)}
           onClick={() => {
@@ -101,7 +102,7 @@ const tableColumns = [
           disabled={item.is_processing && item.is_retry ? true : false}
         >
           Gift Wallet
-        </Button>
+        </Button> */}
       </div>
       : ""
   }
