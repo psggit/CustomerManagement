@@ -19,6 +19,8 @@ import { authTokenInfo } from "./Api"
 import Rewards from "./Rewards"
 import { createSession } from "./utils/session"
 import GiftCardValidityExtension from "./GiftCardValidityExtension"
+import ListOrder from "./NodalTransaction"
+import Payment from "./NodalTransaction/payment"
 
 const history = createBrowserHistory()
 
@@ -112,6 +114,16 @@ function App() {
             exact
             path="/admin/consumers/received-gifts/:consumer_phone"
             render={props => <ReceivedGifts {...props} />}
+          />
+          <Route
+            exact
+            path="/admin/consumers/orders/:consumer_id"
+            render={props => <ListOrder {...props} />}
+          />
+          <Route
+            exact
+            path="/admin/consumers/payments/:order_id"
+            render={props => <Payment {...props} />}
           />
         </Layout>
       </Switch>

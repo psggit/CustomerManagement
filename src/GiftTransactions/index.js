@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useState, useEffect } from "react"
 import PageHeading from "Components/PageHeading"
 import Table from "Components/Table"
@@ -58,7 +59,7 @@ export default function ConsumerGiftPayment (props) {
           Retry
           </Button>
         : ""
-    }
+    },
   ]
 
   const retrySendingConsumerGift = (e, item) => {

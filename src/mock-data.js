@@ -61,3 +61,71 @@ export const consumerRewardsData = {
   ],
   count: 10
 }
+
+export const NodalTransactionData = {
+  data: [
+    {
+      trans_id: 1,
+      trans_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "processed"
+    },
+    {
+      trans_id: 2,
+      trans_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "pending"
+    },
+    {
+      trans_id: 3,
+      trans_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "pending"
+    },
+    {
+      trans_id: 4,
+      trans_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "processed"
+    }
+  ],
+  count: 10
+}
+
+export const paymentData = {
+  data: [
+    {
+      payment_id: 1,
+      payment_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "processed"
+    },
+    {
+      payment_id: 2,
+      payment_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "pending"
+    },
+    {
+      payment_id: 3,
+      payment_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "pending"
+    },
+    {
+      payment_id: 4,
+      payment_amount: 100,
+      order_id: 123,
+      retailer_name: "test",
+      status: "processed"
+    }
+  ],
+  count: 10
+}

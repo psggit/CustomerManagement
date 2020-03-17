@@ -189,3 +189,12 @@ export function convertToCredit (req) {
       data.refresh()
     })
 }
+
+export function fetchListOrder (req) {
+  return POST({
+    api: "/support/order/list",
+    apiBase: "orderman",
+    data: req
+  })
+    .then(json => json);
+}

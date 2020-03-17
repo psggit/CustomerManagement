@@ -1,8 +1,13 @@
+.table--container {
+  overflow-x: auto;
+}
+
 table {
   border: 1px solid #c8e1ff;
   border-collapse: collapse;
   border-color: #c8e1ff;
   background-color: #fff;
+  overflow: auto;
   a {
     color: #0366d6;
   }
