@@ -29,7 +29,8 @@ export default function Payment (props) {
     },
     {
       name: "Success Message",
-      mapping: "is_success"
+      mapping: "is_success",
+      fn: is_success => is_success === true ? "true":"false"  
     },
     {
       name: "Transaction ID",
