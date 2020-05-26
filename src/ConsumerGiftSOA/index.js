@@ -17,10 +17,10 @@ const tableColumns = [
     name: "Transaction Amount",
     mapping: "Amount"
   },
-  {
-    name: "Closing Balance",
-    mapping: "Balance"
-  },
+  // {
+  //   name: "Closing Balance",
+  //   mapping: "Balance"
+  // },
   {
     name: "Card number",
     mapping: "CardNumber"
