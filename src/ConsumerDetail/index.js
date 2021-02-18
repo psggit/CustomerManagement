@@ -16,7 +16,7 @@ export default function ConsumerDetail () {
   const [isUpdating, setIsUpdating] = useState(false)
   const [pod_enabled, setPodEnabled] = useState(false)
 
-  const handleCheckboxChange = (e) => {
+  const handleCheckboxChange = () => {
     setPodEnabled(!pod_enabled)
   }
 
