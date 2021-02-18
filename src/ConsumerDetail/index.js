@@ -147,14 +147,20 @@ export default function ConsumerDetail () {
           </FormGroup>
 
           <FormGroup inline>
-            <label>Payment on Delivery</label>
+          {/* <div style={{display: "flex"}}> */}
+            <label>Payment on Delivery Enabled</label>
             <Input
-              style={{width: "24px", height: "24px"}}
+              style={{
+              width: "24px", 
+              height: "24px",
+              //marginLeft: "65px"
+             }}
               name="pod_enabled"
               onChange={handleCheckboxChange}
               checked={pod_enabled}
               type="checkbox"
             />
+            {/* </div> */}
           </FormGroup>
 
           <Button appearance="primary" onClick={handleSubmit}>Save</Button>
