@@ -14,6 +14,11 @@ export default function ConsumerDetail () {
   const [dob, setDOB] = useState("")
  //const [signupDate, setSignupDate] = useState("")
   const [isUpdating, setIsUpdating] = useState(false)
+  const [pod_enabled, setPodEnabled] = useState(false)
+
+  const handleCheckboxChange = () => {
+    setPodEnabled(!pod_enabled)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -22,7 +27,8 @@ export default function ConsumerDetail () {
       consumer_id,
       name,
       gender,
-      dob
+      dob,
+      pod_enabled
       //dob: new Date(dob).toISOString()
     }
     updateConsumer(updateConsumerReq)
@@ -47,6 +53,7 @@ export default function ConsumerDetail () {
         setGender(fetchConsumerDetailRes.consumer.gender)
         setName(fetchConsumerDetailRes.consumer.name)
         setDOB(fetchConsumerDetailRes.consumer.dob.slice(0, 10))
+        setPodEnabled(fetchConsumerDetailRes.consumer.pod_enabled)
         //setSignupDate(Moment(fetchConsumerDetailRes.consumer.signup_date).format("DD-MM-YYYY"))
       })
   }, [])
@@ -137,6 +144,23 @@ export default function ConsumerDetail () {
           <FormGroup inline>
             <label>Pin attempts</label>
             <Input disabled defaultValue={consumerDetail.pin_attempts} />
+          </FormGroup>
+
+          <FormGroup inline>
+          {/* <div style={{display: "flex"}}> */}
+            <label>Payment on Delivery Enabled</label>
+            <Input
+              style={{
+              width: "24px", 
+              height: "24px",
+              //marginLeft: "65px"
+             }}
+              name="pod_enabled"
+              onChange={handleCheckboxChange}
+              checked={pod_enabled}
+              type="checkbox"
+            />
+            {/* </div> */}
           </FormGroup>
 
           <Button appearance="primary" onClick={handleSubmit}>Save</Button>
