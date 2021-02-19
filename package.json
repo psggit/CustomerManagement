@@ -6,7 +6,6 @@
   "author": "Madhur Garg",
   "license": "MIT",
   "dependencies": {
-    "cosmos": "auth0/cosmos",
     "helmet": "^3.21.0",
     "moment": "^2.24.0",
     "react": "^16.9.0",
